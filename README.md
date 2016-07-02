@@ -1,5 +1,6 @@
 # NiceMark
 一款基于electron的markdown编辑器。
+
 ![NiceMark](https://github.com/dongkuo/NiceMark/blob/master/src/screenshot/NiceMark.png)
 
 ## 1. 特色
