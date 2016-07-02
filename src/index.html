@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>NiceMark</title>
+		<link rel="stylesheet/less" type="text/css" href="less/styles.less" />
+		<link rel="stylesheet" type="text/css" href="css/codemirror/codemirror.css" />
+		<link rel="stylesheet" type="text/css" href="css/codemirror/theme/nicemark.css"/>
+		<script type="text/javascript" src="js/less.min.js"></script>
+		<script type="text/javascript" src="js/codemirror/codemirror.js"></script>
+		<script type="text/javascript" src="js/codemirror/overlay.js" ></script>
+		<script type="text/javascript" src="js/codemirror/xml.js" ></script>
+		<script type="text/javascript" src="js/codemirror/markdown.js"></script>
+		<script type="text/javascript" src="js/codemirror/gfm.js" ></script>
+		<script type="text/javascript" src="js/codemirror/javascript.js" ></script>
+		<script type="text/javascript" src="js/codemirror/css.js" ></script>
+		<script type="text/javascript" src="js/codemirror/htmlmixed.js" ></script>
+		<script type="text/javascript" src="js/codemirror/clike.js" ></script>
+		<script type="text/javascript" src="js/codemirror/meta.js" ></script>
+		<script type="text/javascript" src="js/marked.js"></script>
+	</head>
+
+	<body>
+		<!--标题栏-->
+		<div id="titlebar">
+			<img id="titlebar-logo" src="img/logo.png" />
+			<p id="titlebar-title">NiceMark，让书写更优雅</p>
+			<ul id="titlebar-control">
+				<li class="material-icons">fullscreen</li>
+				<li class="material-icons">remove</li>
+				<li class="material-icons">crop_square</li>
+				<li class="material-icons">close</li>
+			</ul>
+		</div>
+		<!--主要部分-->
+		<div id="main">
+			<!--editor-->
+			<div id="editor-container">
+				<!--编辑器工具栏-->
+				<div id="editor-toolbar" class="toolbar">
+					<ul class="float-left">
+						<li class="material-icons toolbar-item" title="工作空间">apps</i>
+					</ul>
+					<ul class="inline-block">
+						<li class="material-icons toolbar-item" title="加粗">format_bold</li>
+						<li class="material-icons toolbar-item" title="斜体">format_italic</li>
+						<li class="material-icons toolbar-item" title="下划线">format_underlined</li>
+						<li class="material-icons toolbar-item" title="引用">format_quote</li>
+						<li class="material-icons toolbar-item" title="代码">code</li>
+						<li class="material-icons toolbar-item" title="数学公式">functions</li>
+						<li class="material-icons toolbar-item" title="链接">insert_link</li>
+						<li class="material-icons toolbar-item" title="图片">insert_photo</li>
+						<li class="material-icons toolbar-item" title="表格">grid_on</li>
+						<li class="material-icons toolbar-item" title="有序列表">format_list_numbered</li>
+						<li class="material-icons toolbar-item" title="无序列表">format_list_bulleted</li>
+					</ul>
+					<ul class="float-right">
+						<li class="material-icons toolbar-item" title="编辑模式">mode_edit</li>
+					</ul>
+				</div>
+				<!--编辑区-->
+				<div id="editor-wrap">
+					<div id="editor">
+					</div>
+				</div>
+			</div>
+			<!--preview-->
+			<div id="preview-container">
+				<div id="preview-toolbar" class="toolbar">
+					<ul class="float-left">
+						<li class="material-icons toolbar-item" title="预览模式">visibility</i>
+					</ul>
+					<ul class="float-left horizontal-space-large">
+						<li class="material-icons toolbar-item" title="以html导出">code</li>
+						<li class="material-icons toolbar-item" title="以pdf导出">picture_as_pdf</li>
+					</ul>
+					<ul class="float-left horizontal-space-large">
+						<li class="material-icons toolbar-item" title="左对齐">format_align_left</li>
+						<li class="material-icons toolbar-item" title="居中对齐">format_align_center</li>
+						<li class="material-icons toolbar-item" title="右对齐">format_align_right</li>
+					</ul>
+					<ul class="float-right">
+						<li class="material-icons toolbar-item" title="目录">menu</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="js/editor.js"></script>
+	</body>
+
+</html>
