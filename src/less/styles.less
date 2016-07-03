@@ -11,8 +11,11 @@
 @toolbar-horizontal-padding: 10px;
 @toolbar-height: 48px;
 @toolbar-shadow: rgba(0, 0, 0, 0.2) 0 2px 5px 0;
-
-// 初始化
+@preview-max-width: 960px;
+@preview-padding-top: 0;
+@preview-padding-bottom: 10px;
+@preview-padding-left: 20px;
+@preview-padding-right: 20px; // 初始化
 body,
 div,
 dl,
@@ -50,6 +53,7 @@ body {
     color: #404040;
     font-size: 16px;
     font-family: "Lato", "proxima-nova", "Helvetica Neue", Arial, "microsoft yahei";
+    overflow: hidden;
 }
 a {
     color: #03A9F4;
@@ -70,16 +74,16 @@ li {
     list-style: none;
 }
 * {
-  -webkit-transition-property: color, background-color;
-  -webkit-transition-duration: 0.25s;
-  -webkit-transition-timing-function: ease;
-  -webkit-user-select: none;
+    -webkit-transition-property: color, background-color;
+    -webkit-transition-duration: 0.25s;
+    -webkit-transition-timing-function: ease;
+    -webkit-user-select: none;
 }
 @font-face {
-  font-family: 'source-code';
-  src: url('../font/sourceCodePro.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
+    font-family: 'source-code';
+    src: url('../font/sourceCodePro.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
 }
 // google-icon-font
 @font-face {
@@ -104,36 +108,35 @@ li {
     -webkit-font-feature-settings: 'liga';
     -webkit-font-smoothing: antialiased;
 }
-.horizontal-space-normal{
+.horizontal-space-normal {
     margin-left: 10px;
 }
-.horizontal-space-large{
+.horizontal-space-large {
     margin-left: 20px;
 }
-.float-left{
+.float-left {
     float: left;
 }
-.float-right{
+.float-right {
     float: right;
 }
-.inline-block{
+.inline-block {
     display: inline-block;
 }
 //toolbar
 .toolbar {
-    width: calc(~"100% -"  2 * @toolbar-horizontal-padding);
+    width: calc(~"100% -" 2 * @toolbar-horizontal-padding);
     height: @toolbar-height;
     box-shadow: @toolbar-shadow;
     text-align: center;
     padding: 0 @toolbar-horizontal-padding;
 }
-.toolbar-item{
+.toolbar-item {
     float: left;
     line-height: @toolbar-height;
     padding: 0 5px;
     cursor: pointer;
 }
-
 // titlebar
 #titlebar {
     width: 100%;
@@ -172,7 +175,7 @@ li {
 #titlebar-control li:hover {
     background: @titlebar-control-background-color-hover;
 }
-#titlebar-control li:last-child:hover{
+#titlebar-control li:last-child:hover {
     background: @titlebar-control-close-background-color-hover;
 }
 // main
@@ -187,22 +190,22 @@ li {
     float: left;
     background: @editor-background-color;
 }
-#editor-container .toolbar-item{
+#editor-container .toolbar-item {
     color: #B7B3B3;
 }
-#editor-container .toolbar-item:hover{
+#editor-container .toolbar-item:hover {
     color: #FEFEFE;
 }
-#editor-wrap{
+#editor-wrap {
     width: 100%;
     height: calc(~"100% - " @toolbar-height);
 }
-#editor{
+#editor {
     width: 100%;
     height: 100%;
 }
 #editor * {
-  -webkit-transition-property: none;
+    -webkit-transition-property: none;
 }
 // preview
 #preview-container {
@@ -210,10 +213,36 @@ li {
     height: 100%;
     float: left;
 }
-#preview-container .toolbar-item{
+#preview-container .toolbar-item {
     color: #666;
 }
-#preview-container .toolbar-item:hover{
+#preview-container .toolbar-item:hover {
     color: #000000;
 }
-
+#preview-wrap {
+    width: 100%;
+    height: calc(~"100% - " @toolbar-height);
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+#preview-wrap::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+    background-color: #ECEDEA;
+}
+#preview-wrap::-webkit-scrollbar-thumb {
+    background-color: #CFD4D6;
+}
+#preview-wrap::-webkit-scrollbar-thumb:hover {
+    background-color: #B4BEC2;
+}
+#preview {
+    padding: @preview-padding-top @preview-padding-right calc(@preview-padding-bottom) @preview-padding-left;
+    max-width: @preview-max-width;
+    margin: 0 auto;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+#preview * {
+    -webkit-user-select: text;
+}
