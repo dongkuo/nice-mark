@@ -6,31 +6,45 @@
 		<title>NiceMark</title>
 		<link rel="stylesheet/less" type="text/css" href="less/styles.less" />
 		<link rel="stylesheet" type="text/css" href="css/codemirror/codemirror.css" />
-		<link rel="stylesheet" type="text/css" href="css/codemirror/foldgutter.css"/>
-		<link rel="stylesheet" type="text/css" href="css/codemirror/theme/nicemark.css"/>
-		<link rel="stylesheet" type="text/css" href="css/preview.css"/>
+		<link rel="stylesheet" type="text/css" href="css/codemirror/foldgutter.css" />
+		<link rel="stylesheet" type="text/css" href="css/codemirror/theme/nicemark.css" />
+		<link rel="stylesheet" type="text/css" href="css/preview.css" />
 		<link rel="stylesheet" href="css/highlight/nicemark.css" />
 		<script type="text/javascript" src="js/lib/less.min.js"></script>
 		<script type="text/javascript" src="js/lib/codemirror/codemirror.js"></script>
-		<script type="text/javascript" src="js/lib/codemirror/overlay.js" ></script>
-		<script type="text/javascript" src="js/lib/codemirror/scrollpastend.js" ></script>
-		<script type="text/javascript" src="js/lib/codemirror/continuelist.js" ></script>
-		<script type="text/javascript" src="js/lib/codemirror/foldcode.js" ></script>
-		<script type="text/javascript" src="js/lib/codemirror/foldgutter.js" ></script>
-		<script type="text/javascript" src="js/lib/codemirror/markdown-fold.js" ></script>
-		<script type="text/javascript" src="js/lib/codemirror/xml.js" ></script>
+		<script type="text/javascript" src="js/lib/codemirror/overlay.js"></script>
+		<script type="text/javascript" src="js/lib/codemirror/scrollpastend.js"></script>
+		<script type="text/javascript" src="js/lib/codemirror/continuelist.js"></script>
+		<script type="text/javascript" src="js/lib/codemirror/foldcode.js"></script>
+		<script type="text/javascript" src="js/lib/codemirror/foldgutter.js"></script>
+		<script type="text/javascript" src="js/lib/codemirror/markdown-fold.js"></script>
+		<script type="text/javascript" src="js/lib/codemirror/xml.js"></script>
 		<script type="text/javascript" src="js/lib/codemirror/markdown.js"></script>
-		<script type="text/javascript" src="js/lib/codemirror/gfm.js" ></script>
+		<script type="text/javascript" src="js/lib/codemirror/gfm.js"></script>
 		<script type="text/javascript" src="js/lib/marked.js"></script>
-		<script type="text/javascript" src="js/lib/highlight.pack.js" ></script>
-		<script>hljs.initHighlightingOnLoad();</script>
+		<script type="text/javascript" src="js/lib/highlight.pack.js"></script>
+		<script>
+			hljs.initHighlightingOnLoad();
+		</script>
+		<script type="text/javascript" src="js/lib/raphael.min.js"></script>
+		<script type="text/javascript" src="js/lib/flowchart.min.js"></script>
+		<script type="text/javascript" src="js/lib/underscore-min.js"></script>
+		<script type="text/javascript" src="js/lib/sequence-diagram-min.js"></script>
+		<script type="text/javascript" src="js/lib/mathjax/MathJax.js?config=TeX-AMS_SVG-full"></script>
+		<script type="text/x-mathjax-config">
+			MathJax.Hub.Config({messageStyle: "none", showProcessingMessages: false, tex2jax: { inlineMath: [['$','$']], displayMath: [ ['$$','$$']]}, jax: ["input/TeX","output/SVG"]});
+		</script>
 	</head>
 
 	<body>
+		<!--hidden-->
+		<div id="mathjax-buffer" class="hidden"></div>
+		<div id="chart-buffer" class="invisible"></div>
+		<div id="sequence-buffer" class="invisible"></div>
 		<!--标题栏-->
 		<div id="titlebar">
 			<img id="titlebar-logo" src="img/logo.png" />
-			<p id="titlebar-title">NiceMark，让书写更优雅</p>
+			<p id="titlebar-title">NiceMark，享受书写的快乐</p>
 			<ul id="titlebar-control">
 				<li class="material-icons">fullscreen</li>
 				<li class="material-icons">remove</li>
@@ -77,7 +91,7 @@
 						<li class="material-icons toolbar-item" title="预览模式">visibility</i>
 					</ul>
 					<ul class="float-left horizontal-space-large">
-						<li class="material-icons toolbar-item" title="以html导出">code</li>
+						<li class="material-icons toolbar-item" title="以html导出">settings_ethernet</li>
 						<li class="material-icons toolbar-item" title="以pdf导出">picture_as_pdf</li>
 					</ul>
 					<ul class="float-left horizontal-space-large">
@@ -86,7 +100,7 @@
 						<li class="material-icons toolbar-item" title="右对齐">format_align_right</li>
 					</ul>
 					<ul class="float-right">
-						<li class="material-icons toolbar-item" title="目录">menu</li>
+						<li class="material-icons toolbar-item" title="目录">view_headline</li>
 					</ul>
 				</div>
 				<div id="preview-wrap">

@@ -22,6 +22,7 @@
 }
 
 #preview blockquote {
+	margin: 24px 0;
 	padding: 0 20px;
 	border-left: 6px solid #D5DBDE;
 }
@@ -98,4 +99,8 @@
     border-radius: 4px;
     padding: 2px 4px;
     margin: 0 4px;
+}
+
+#preview .sequence-diagrams{
+	text-align: center;
 }
