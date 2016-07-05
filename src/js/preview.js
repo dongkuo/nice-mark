@@ -1,5 +1,6 @@
 (function() {
-	var oPreview = document.getElementById('preview');
+	var oPreviewWrap = document.getElementById('preview-wrap');
+    var oPreview = document.getElementById('preview');
 	var mathjaxBuffer = document.getElementById('mathjax-buffer');
 	var chartBuffer = document.getElementById('chart-buffer');
 	var sequenceBuffer = document.getElementById('sequence-buffer');
@@ -26,7 +27,8 @@
 		sourceLine: true,
 		gfm: true,
 		langPrefix: 'language-',
-		highlight: highlight
+		highlight: highlight,
+		sourceLine: true
 	}
 
 	var preview = {
@@ -39,7 +41,7 @@
 		delay: 30, // delay after keystroke before updating
 		output: null, // filled in by Init below
 		buffer: mathjaxBuffer, // filled in by Init below
-		timeout: null, // store setTimout id
+		timeout: null, // store setTimeout id
 		mjRunning: false, // true when MathJax is processing
 		mjPending: false, // true when a typeset has been queued
 		inputText: null,
@@ -75,6 +77,7 @@
 	mathjaxHandler.handleCallback = MathJax.Callback(["handle", mathjaxHandler]);
 	mathjaxHandler.handleCallback.autoReset = true;
 
+	// 代码高亮
 	function highlight(code, language) {
 		if (language == 'auto') {
 			return hljs.highlightAuto(code).value;
@@ -120,7 +123,7 @@
 	}
 
 	// 设置预览内容
-	editor.onchange(function(value) {
+	editor.on('change', function(value) {
 		if (preview.isMathjax)
 			mathjaxHandler.start(marked(value), function(value) {
 				oPreview.innerHTML = value;
@@ -128,5 +131,26 @@
 		else
 			oPreview.innerHTML = marked(value);
 	});
+
+    // 监听editor滚动
+    var lastAnim = null;
+    editor.on('scroll', function (line, offset) {
+        var target = oPreviewWrap.querySelector('[source-line="' + line + '"]');
+        if (target) {
+            var begin = oPreviewWrap.scrollTop;
+            var end = target.offsetTop + offset - 80;
+            var anim = utils.Animation.animate('linear', begin, end, 150, {
+                start: function() {
+                    utils.Animation.clear(lastAnim);
+                },
+                update: function(value) {
+                    oPreviewWrap.scrollTop = value;
+                }
+            });
+            lastAnim = anim;
+        }
+    });
+
+    this.preview = preview;
 
 })();
