@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c126150a-247a-4816-8b4a-a044e5552eb3" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/js/preview.js" afterPath="$PROJECT_DIR$/src/js/preview.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/index.html" afterPath="$PROJECT_DIR$/src/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/js/editor.js" afterPath="$PROJECT_DIR$/src/js/editor.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main.js" afterPath="$PROJECT_DIR$/src/main.js" />
     </list>
     <ignored path="NiceMark.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -25,92 +28,58 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="marked.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/js/lib/marked.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="21840">
-              <caret line="784" column="27" selection-start-line="784" selection-start-column="27" selection-end-line="784" selection-end-column="27" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="editor.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/js/editor.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="455">
-              <caret line="43" column="35" selection-start-line="43" selection-start-column="35" selection-end-line="43" selection-end-column="35" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/README.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
-            <state split_layout="FIRST">
-              <first_editor relative-caret-position="392">
-                <caret line="14" column="27" selection-start-line="14" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-                <folding />
-              </first_editor>
-              <second_editor />
-            </state>
-          </provider>
-          <provider editor-type-id="MarkdownFxPreviewEditor">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="preview.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/js/preview.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="583">
-              <caret line="154" column="38" selection-start-line="154" selection-start-column="38" selection-end-line="154" selection-end-column="38" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="219">
-              <caret line="88" column="58" selection-start-line="88" selection-start-column="58" selection-end-line="88" selection-end-column="58" />
+            <state relative-caret-position="112">
+              <caret line="58" column="16" selection-start-line="58" selection-start-column="16" selection-end-line="58" selection-end-column="16" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="styles.less" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/less/styles.less">
+      <file leaf-file-name="editor.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/js/editor.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="406">
-              <caret line="276" column="1" selection-start-line="276" selection-start-column="1" selection-end-line="276" selection-end-column="1" />
+            <state relative-caret-position="471">
+              <caret line="55" column="47" selection-start-line="55" selection-start-column="47" selection-end-line="55" selection-end-column="47" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="preview.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/css/preview.css">
+      <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="84">
-              <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+            <state relative-caret-position="499">
+              <caret line="21" column="35" selection-start-line="21" selection-start-column="35" selection-end-line="21" selection-end-column="35" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="utils.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/js/utils.js">
+      <file leaf-file-name="file.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/js/file.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1344">
-              <caret line="50" column="23" selection-start-line="50" selection-start-column="23" selection-end-line="50" selection-end-column="23" />
-              <folding>
-                <element signature="e#0#38#0" expanded="false" />
-              </folding>
+            <state relative-caret-position="140">
+              <caret line="5" column="5" selection-start-line="5" selection-start-column="5" selection-end-line="5" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider editor-type-id="MarkdownFxPreviewEditor">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
+            <state split_layout="FIRST">
+              <first_editor relative-caret-position="252">
+                <caret line="9" column="10" selection-start-line="9" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+                <folding />
+              </first_editor>
+              <second_editor />
             </state>
           </provider>
         </entry>
@@ -137,13 +106,15 @@
       <list>
         <option value="$PROJECT_DIR$/src/js/lib/marked.js" />
         <option value="$PROJECT_DIR$/src/js/synchronizedScrolling.js" />
-        <option value="$PROJECT_DIR$/src/index.html" />
         <option value="$PROJECT_DIR$/src/js/utils.js" />
-        <option value="$PROJECT_DIR$/src/js/editor.js" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/less/styles.less" />
         <option value="$PROJECT_DIR$/src/js/preview.js" />
         <option value="$PROJECT_DIR$/src/css/preview.css" />
+        <option value="$PROJECT_DIR$/src/js/file.js" />
+        <option value="$PROJECT_DIR$/src/main.js" />
+        <option value="$PROJECT_DIR$/src/index.html" />
+        <option value="$PROJECT_DIR$/src/js/editor.js" />
       </list>
     </option>
   </component>
@@ -183,79 +154,12 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="NiceMark" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="NiceMark" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="NiceMark" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="NiceMark" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="NiceMark" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="NiceMark" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="NiceMark" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="less" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="NiceMark" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="NiceMark" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="css" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
+        <subPane />
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -700,15 +604,17 @@
       <workItem from="1467716040498" duration="6593000" />
       <workItem from="1467728349852" duration="6997000" />
       <workItem from="1467770102896" duration="2729000" />
+      <workItem from="1467811040148" duration="385000" />
+      <workItem from="1467782641785" duration="2284000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="22934000" />
+    <option name="totallyTimeSpent" value="25603000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1053" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -721,7 +627,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21420941" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21420941" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -756,6 +662,36 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/js/editor.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/file.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="56">
+          <caret line="2" column="3" selection-start-line="2" selection-start-column="3" selection-end-line="2" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider editor-type-id="MarkdownFxPreviewEditor">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="252">
+            <caret line="9" column="10" selection-start-line="9" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/js/lib/marked.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="21840">
@@ -775,6 +711,9 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
+      <provider editor-type-id="MarkdownFxPreviewEditor">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
         <state split_layout="FIRST">
           <first_editor relative-caret-position="0">
@@ -784,8 +723,78 @@
           <second_editor />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/preview.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4312">
+          <caret line="154" column="38" selection-start-line="154" selection-start-column="38" selection-end-line="154" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2464">
+          <caret line="88" column="58" selection-start-line="88" selection-start-column="58" selection-end-line="88" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/less/styles.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7728">
+          <caret line="276" column="1" selection-start-line="276" selection-start-column="1" selection-end-line="276" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/css/preview.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/utils.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1344">
+          <caret line="50" column="23" selection-start-line="50" selection-start-column="23" selection-end-line="50" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#38#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/lib/marked.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="21840">
+          <caret line="784" column="27" selection-start-line="784" selection-start-column="27" selection-end-line="784" selection-end-column="27" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/editor.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1204">
+          <caret line="43" column="35" selection-start-line="43" selection-start-column="35" selection-end-line="43" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
       <provider editor-type-id="MarkdownFxPreviewEditor">
         <state />
+      </provider>
+      <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="0">
+            <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/js/preview.js">
@@ -814,22 +823,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file:///media/derek/文档/workspace/nwjs/NiceMark/src/js/common.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="9520">
-          <caret line="340" column="3" selection-start-line="319" selection-start-column="2" selection-end-line="340" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///media/derek/文档/workspace/nwjs/NiceMark/src/js/preview.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3080">
-          <caret line="110" column="22" selection-start-line="110" selection-start-column="2" selection-end-line="110" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file:///media/derek/文档/workspace/nwjs/NiceMark/src/js/common.js" />
+    <entry file="file:///media/derek/文档/workspace/nwjs/NiceMark/src/js/preview.js" />
     <entry file="file://$PROJECT_DIR$/src/js/lib/marked.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="21840">
@@ -856,14 +851,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/synchronizedScrolling.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="7" column="32" selection-start-line="7" selection-start-column="32" selection-end-line="7" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/synchronizedScrolling.js" />
     <entry file="file://$PROJECT_DIR$/src/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2856">
@@ -872,21 +860,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file:///media/derek/文档/workspace/nwjs/NiceMark/src/js/editor.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="11592">
-          <caret line="414" column="0" selection-start-line="414" selection-start-column="0" selection-end-line="419" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///media/derek/文档/workspace/nwjs/NiceMark/src/js/preview.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3892">
-          <caret line="139" column="56" selection-start-line="139" selection-start-column="39" selection-end-line="139" selection-end-column="56" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file:///media/derek/文档/workspace/nwjs/NiceMark/src/js/editor.js" />
+    <entry file="file:///media/derek/文档/workspace/nwjs/NiceMark/src/js/preview.js" />
     <entry file="file://$PROJECT_DIR$/src/js/utils.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="28">
@@ -911,7 +886,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="840">
           <caret line="30" column="17" selection-start-line="30" selection-start-column="17" selection-end-line="30" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -939,13 +913,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file:///media/derek/文档/workspace/nwjs/NiceMark/src/js/marked.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30576">
-          <caret line="1096" column="26" selection-start-line="1096" selection-start-column="10" selection-end-line="1096" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file:///media/derek/文档/workspace/nwjs/NiceMark/src/js/marked.js" />
     <entry file="file://$PROJECT_DIR$/src/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -969,13 +937,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file:///media/derek/文档/workspace/nwjs/NiceMark/src/js/marked.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="807">
-          <caret line="1096" column="26" selection-start-line="1096" selection-start-column="10" selection-end-line="1096" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file:///media/derek/文档/workspace/nwjs/NiceMark/src/js/marked.js" />
     <entry file="file://$PROJECT_DIR$/src/js/lib/marked.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="21840">
@@ -986,37 +948,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file:///media/derek/文档/workspace/nwjs/NiceMark/src/js/editor.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="443">
-          <caret line="410" column="26" selection-start-line="410" selection-start-column="14" selection-end-line="410" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/synchronizedScrolling.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="7" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///media/derek/文档/workspace/nwjs/NiceMark/src/js/preview.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3080">
-          <caret line="110" column="22" selection-start-line="110" selection-start-column="2" selection-end-line="110" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///media/derek/文档/workspace/nwjs/NiceMark/src/js/common.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="9520">
-          <caret line="340" column="3" selection-start-line="319" selection-start-column="2" selection-end-line="340" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file:///media/derek/文档/workspace/nwjs/NiceMark/src/js/editor.js" />
+    <entry file="file://$PROJECT_DIR$/src/js/synchronizedScrolling.js" />
+    <entry file="file:///media/derek/文档/workspace/nwjs/NiceMark/src/js/preview.js" />
+    <entry file="file:///media/derek/文档/workspace/nwjs/NiceMark/src/js/common.js" />
     <entry file="file://$PROJECT_DIR$/src/js/utils.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1344">
@@ -1027,25 +962,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/editor.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="455">
-          <caret line="43" column="35" selection-start-line="43" selection-start-column="35" selection-end-line="43" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="219">
-          <caret line="88" column="58" selection-start-line="88" selection-start-column="58" selection-end-line="88" selection-end-column="58" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/js/preview.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="583">
+        <state relative-caret-position="4312">
           <caret line="154" column="38" selection-start-line="154" selection-start-column="38" selection-end-line="154" selection-end-column="38" />
           <folding />
         </state>
@@ -1053,7 +972,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/less/styles.less">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="406">
+        <state relative-caret-position="7728">
           <caret line="276" column="1" selection-start-line="276" selection-start-column="1" selection-end-line="276" selection-end-column="1" />
           <folding />
         </state>
@@ -1063,20 +982,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="84">
           <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
-        <state split_layout="FIRST">
-          <first_editor relative-caret-position="392">
-            <caret line="14" column="27" selection-start-line="14" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-            <folding />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
       <provider editor-type-id="text-editor">
         <state relative-caret-position="252">
           <caret line="9" column="9" selection-start-line="9" selection-start-column="9" selection-end-line="9" selection-end-column="9" />
@@ -1085,6 +994,47 @@
       </provider>
       <provider editor-type-id="MarkdownFxPreviewEditor">
         <state />
+      </provider>
+      <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="252">
+            <caret line="9" column="10" selection-start-line="9" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/file.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="5" column="5" selection-start-line="5" selection-start-column="5" selection-end-line="5" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="499">
+          <caret line="21" column="35" selection-start-line="21" selection-start-column="35" selection-end-line="21" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="58" column="16" selection-start-line="58" selection-start-column="16" selection-end-line="58" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/editor.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="471">
+          <caret line="55" column="47" selection-start-line="55" selection-start-column="47" selection-end-line="55" selection-end-column="47" />
+          <folding />
+        </state>
       </provider>
     </entry>
   </component>
