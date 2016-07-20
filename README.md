@@ -2,7 +2,7 @@
 
 ## 1. 简介
 
-NiceMark是一款基于electron的markdown编辑器。具有如下特色：
+NiceMark是一款基于electron的markdown编辑器，具有如下特色：
 
 1. UI简洁 √;
 2. 即时预览 √;
