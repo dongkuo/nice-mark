@@ -10,6 +10,11 @@
 		<link rel="stylesheet" type="text/css" href="css/codemirror/theme/nicemark.css" />
 		<link rel="stylesheet" type="text/css" href="css/preview.css" />
 		<link rel="stylesheet" href="css/highlight/nicemark.css" />
+		<script>
+			less = {
+				fileAsync: true
+			};
+		</script>
 		<script type="text/javascript" src="js/lib/less.min.js"></script>
 		<script type="text/javascript" src="js/lib/codemirror/codemirror.js"></script>
 		<script type="text/javascript" src="js/lib/codemirror/overlay.js"></script>
@@ -46,10 +51,10 @@
 			<img id="titlebar-logo" src="img/logo.png" />
 			<p id="titlebar-title">NiceMark，享受书写的快乐</p>
 			<ul id="titlebar-control">
-				<li class="material-icons">fullscreen</li>
-				<li class="material-icons">remove</li>
-				<li class="material-icons">crop_square</li>
-				<li class="material-icons">close</li>
+				<li id="btn-fullscreen" class="material-icons">fullscreen</li>
+				<li id="btn-minimize" class="material-icons">remove</li>
+				<li id="btn-maximize" class="material-icons">crop_square</li>
+				<li id="btn-close" class="material-icons">close</li>
 			</ul>
 		</div>
 		<!--主要部分-->
@@ -109,9 +114,10 @@
 			</div>
 		</div>
 		<script type="text/javascript" src="js/utils.js"></script>
+		<script type="text/javascript" src="js/titlebar.js"></script>
 		<script type="text/javascript" src="js/editor.js"></script>
-        <script type="text/javascript" src="js/preview.js"></script>
-        <script type="text/javascript" src="js/file.js"></script>
-    </body>
+		<script type="text/javascript" src="js/preview.js"></script>
+		<script type="text/javascript" src="js/file.js"></script>
+	</body>
 
 </html>

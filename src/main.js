@@ -15,7 +15,7 @@ function createWindow() {
 		defaultMonospaceFontSize: 16,
 		defaultEncoding: "utf-8"
 	});
-
+	
 	// and load the index.html of the app.
 	win.loadURL(`file://${__dirname}/index.html`);
 
