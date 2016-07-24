@@ -212,5 +212,7 @@
 		};
 	}
 
+	utils.fs = require('fs');
+
 	this.utils = utils;
 })();

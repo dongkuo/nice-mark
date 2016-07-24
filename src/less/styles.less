@@ -11,6 +11,7 @@
 @toolbar-horizontal-padding: 10px;
 @toolbar-height: 48px;
 @toolbar-shadow: rgba(0, 0, 0, 0.2) 0 2px 5px 0;
+@preview-background-color: #FCFCFC;
 @preview-max-width: 960px;
 @preview-padding-top: 0;
 @preview-padding-bottom: 10px;
@@ -201,13 +202,16 @@ li {
 #main {
     width: 100%;
     height: calc(~"100% - " @titlebar-height);
+    position: relative;
 }
 // editor
 #editor-container {
     width: 50%;
     height: 100%;
-    float: left;
     background: @editor-background-color;
+    position: absolute;
+    left: 0;
+    top: 0;
 }
 #editor-container .toolbar-item {
     color: #B7B3B3;
@@ -218,6 +222,8 @@ li {
 #editor-wrap {
     width: 100%;
     height: calc(~"100% - " @toolbar-height);
+    max-width: 960px;
+    margin: 0 auto;
 }
 #editor {
     width: 100%;
@@ -230,7 +236,10 @@ li {
 #preview-container {
     width: 50%;
     height: 100%;
-    float: left;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: @preview-background-color;
 }
 #preview-container .toolbar-item {
     color: #666;

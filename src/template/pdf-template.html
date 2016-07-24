@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>NiceMark</title>
+		<link rel="stylesheet" href="../less/styles.less" />
+		<link rel="stylesheet" href="../css/preview.css" />
+		<link rel="stylesheet" href="../css/highlight/nicemark.css" />
+		<script>
+			less = {
+				fileAsync: true
+			};
+		</script>
+		<script type="text/javascript" src="../js/lib/less.min.js"></script>
+		<script type="text/x-mathjax-config">
+			MathJax.Hub.Config({messageStyle: "none", showProcessingMessages: false, tex2jax: { inlineMath: [['$','$'],['\\(','\\)']] }, jax: ["input/TeX","output/SVG"]});
+		</script>
+		<script type="text/javascript" src="../js/lib/mathjax/MathJax.js?config=TeX-AMS_SVG-full"></script>
+		<style>
+			html,
+			body {
+				overflow: visible;
+			}
+			
+			img {
+				box-shadow: none !important;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="preview-wrap">
+		</div>
+		<script>
+			var previewWrap = document.getElementById("preview-wrap");
+
+			function printPdf() {
+				MathJax.Hub.Typeset(previewWrap, function() {
+					window.print();
+				});
+			}
+		</script>
+	</body>
+
+</html>
