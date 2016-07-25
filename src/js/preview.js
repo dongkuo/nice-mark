@@ -6,6 +6,11 @@
 	var chartBuffer = document.getElementById('chart-buffer');
 	var sequenceBuffer = document.getElementById('sequence-buffer');
 	var renderer = new marked.Renderer();
+	var shell = require('electron').shell;
+
+	renderer.link = function(href, title, text) {
+		return handleLink(href, title, text);
+	}
 
 	var flowchartConfig = {
 		'font-family': '"Lato", "proxima-nova", "Helvetica Neue", Arial, "microsoft yahei"',
@@ -77,6 +82,12 @@
 	};
 	mathjaxHandler.handleCallback = MathJax.Callback(["handle", mathjaxHandler]);
 	mathjaxHandler.handleCallback.autoReset = true;
+
+	// 处理链接
+
+	function handleLink(href, title, text) {
+		return '<a href="' + href + '" title="' + title + '" onclick="return preview.openExternal(href)">' + text + '</a>'
+	}
 
 	// 代码高亮
 	function highlight(code, language) {
@@ -165,6 +176,11 @@
 		oPreview.style.paddingBottom = (paddingBottom - 80) + 'px';
 	}
 
+	preview.openExternal = function(href) {
+		shell.openExternal(href);
+		return false;
+	}
+
 	/*preview最大/最小化*/
 	preview.toggleMaximize = function() {
 		if(preview.isMaximize) {
@@ -196,8 +212,8 @@
 			}
 		});
 	}
-	
-	utils.addHotKey('ctrl+ l', function(){
+
+	utils.addHotKey('ctrl+ l', function() {
 		preview.export2pdf();
 	});
 
@@ -213,15 +229,30 @@
 		//			height: 300,
 		//			modal: true
 		//		});
-		win.bw.webContents.printToPDF({
-			pageSize: 'A4',
-			printBackground: true,
-			printSelectionOnly: true
-		}, function(error, data) {
-			if(error) throw err
-			utils.fs.writeFile('C:/Users/dongkuo/Desktop/test.pdf', data, 'utf8', function(err) {
-				if(err) throw err
-			});
+		//		win.bw.webContents.printToPDF({
+		//			pageSize: 'A4',
+		//			printBackground: true,
+		//			printSelectionOnly: true
+		//		}, function(error, data) {
+		//			if(error) throw err
+		//			utils.fs.writeFile('C:/Users/dongkuo/Desktop/test.pdf', data, 'utf8', function(err) {
+		//				if(err) throw err
+		//			});
+		//		});
+		var doc = new jsPDF();
+
+		// We'll make our own renderer to skip this editor
+		//		var specialElementHandlers = {
+		//			'#editor': function(element, renderer) {
+		//				return true;
+		//			}
+		//		};
+
+		// All units are in the set measurement for the document
+		// This can be changed to "pt" (points), "mm" (Default), "cm", "in"
+		doc.fromHTML(oPreview, 15, 15, {
+			'width': 170,
+			'elementHandlers': specialElementHandlers
 		});
 	}
 

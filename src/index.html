@@ -31,6 +31,7 @@
 		<script>
 			hljs.initHighlightingOnLoad();
 		</script>
+		<script type="text/javascript" src="js/lib/jspdf.min.js"></script>
 		<script type="text/javascript" src="js/lib/raphael.min.js"></script>
 		<script type="text/javascript" src="js/lib/flowchart.min.js"></script>
 		<script type="text/javascript" src="js/lib/underscore-min.js"></script>
@@ -68,17 +69,17 @@
 						<li class="material-icons toolbar-item" title="工作空间">apps</li>
 					</ul>
 					<ul class="inline-block">
-						<li class="material-icons toolbar-item" title="加粗">format_bold</li>
-						<li class="material-icons toolbar-item" title="斜体">format_italic</li>
-						<li class="material-icons toolbar-item" title="下划线">format_underlined</li>
-						<li class="material-icons toolbar-item" title="引用">format_quote</li>
-						<li class="material-icons toolbar-item" title="代码">settings_ethernet</li>
-						<li class="material-icons toolbar-item" title="数学公式">functions</li>
-						<li class="material-icons toolbar-item" title="链接">insert_link</li>
-						<li class="material-icons toolbar-item" title="图片">insert_photo</li>
-						<li class="material-icons toolbar-item" title="表格">grid_on</li>
-						<li class="material-icons toolbar-item" title="有序列表">format_list_numbered</li>
-						<li class="material-icons toolbar-item" title="无序列表">format_list_bulleted</li>
+						<li class="material-icons toolbar-item" title="加粗" onclick="editor.bold()">format_bold</li>
+						<li class="material-icons toolbar-item" title="斜体" onclick="editor.italic()">format_italic</li>
+						<li class="material-icons toolbar-item" title="分隔线" onclick="editor.hr()">drag_handle</li>
+						<li class="material-icons toolbar-item" title="引用" onclick="editor.quotation()">format_quote</li>
+						<li class="material-icons toolbar-item" title="代码" onclick="editor.code()">settings_ethernet</li>
+						<li class="material-icons toolbar-item" title="数学公式" onclick="editor.math()">functions</li>
+						<li class="material-icons toolbar-item" title="链接" onclick="editor.link()">insert_link</li>
+						<li class="material-icons toolbar-item" title="图片" onclick="editor.image()">insert_photo</li>
+						<li class="material-icons toolbar-item" title="表格" onclick="editor.table()">grid_on</li>
+						<li class="material-icons toolbar-item" title="有序列表" onclick="editor.ol()">format_list_numbered</li>
+						<li class="material-icons toolbar-item" title="无序列表" onclick="editor.ul()">format_list_bulleted</li>
 					</ul>
 					<ul class="float-right">
 						<li class="material-icons toolbar-item" title="编辑模式" onclick="editor.toggleMaximize()">mode_edit</li>
