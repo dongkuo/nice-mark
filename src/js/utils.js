@@ -212,6 +212,39 @@
 		};
 	}
 
+	/*radio group*/
+	var aRadio = document.querySelectorAll('.radio-group');
+	for(var i = 0; i < aRadio.length; i++) {
+		var aRadioItem = aRadio[i].querySelectorAll('.radio-group-item');
+		for(var j = 0; j < aRadioItem.length; j++) {
+			(function(oRadio, aRadioItem, j) {
+				aRadioItem[j].onclick = function() {
+					for(var k = 0; k < aRadioItem.length; k++) {
+						aRadioItem[k].removeAttribute('selected');
+					}
+					this.setAttribute('selected', '');
+					if(typeof(oRadio.onselect) == 'function') {
+						oRadio.onselect(j);
+					}
+				}
+			})(aRadio[i], aRadioItem, j);
+		}
+	}
+
+	/*checkbox*/
+	var aCheckbox = document.querySelectorAll('.checkbox');
+	for(var i = 0; i < aCheckbox.length; i++) {
+		aCheckbox[i].onclick = function() {
+			var isChecked = this.hasAttribute('checked');
+			if(isChecked)
+				this.removeAttribute('checked');
+			else
+				this.setAttribute('checked', '');
+			if(typeof(this.onchange) == 'function')
+				this.onchange(!isChecked);
+		}
+	}
+
 	utils.fs = require('fs');
 
 	this.utils = utils;

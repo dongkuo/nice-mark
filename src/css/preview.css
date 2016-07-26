@@ -21,6 +21,10 @@
 	margin: 24px 0;
 }
 
+#preview li {
+	margin: 4px 0;
+}
+
 #preview blockquote {
 	margin: 24px 0;
 	padding: 0 20px;
@@ -83,24 +87,26 @@
 #preview>ul>li>ul>li {
 	list-style: circle;
 }
+
 #preview>ul>li>ul>li>ul li {
 	list-style: square;
 }
 
 #preview hr {
-  border-top: none;
-  border-bottom: 1px solid #D8E6E7;
-  margin: 16px 0;
+	border-top: none;
+	border-bottom: 1px solid #D8E6E7;
+	margin: 16px 0;
 }
 
-#preview p code{
-    background-color: #EDF8FB;
-    color: #1596D0;
-    border-radius: 4px;
-    padding: 2px 4px;
-    margin: 0 4px;
+#preview p code,
+#preview li code {
+	background-color: #EDF8FB;
+	color: #1596D0;
+	border-radius: 4px;
+	padding: 2px 4px;
+	margin: 0 4px;
 }
 
-#preview .sequence-diagrams{
+#preview .sequence-diagrams {
 	text-align: center;
 }

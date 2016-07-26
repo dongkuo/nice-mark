@@ -2,6 +2,7 @@
 	var oPreviewContainer = document.getElementById('preview-container');
 	var oPreviewWrap = document.getElementById('preview-wrap');
 	var oPreview = document.getElementById('preview');
+	var oAlignRadioGroup = document.getElementById('align-radio-group');
 	var mathjaxBuffer = document.getElementById('mathjax-buffer');
 	var chartBuffer = document.getElementById('chart-buffer');
 	var sequenceBuffer = document.getElementById('sequence-buffer');
@@ -83,6 +84,12 @@
 	mathjaxHandler.handleCallback = MathJax.Callback(["handle", mathjaxHandler]);
 	mathjaxHandler.handleCallback.autoReset = true;
 
+	// 预览文字对齐方式
+	var aligNArray = ['left', 'center', 'right'];
+	oAlignRadioGroup.onselect = function(i) {
+		oPreview.style.textAlign = aligNArray[i];
+	}
+
 	// 处理链接
 
 	function handleLink(href, title, text) {
@@ -139,13 +146,10 @@
 		// 延迟加载预览
 		if(timer) window.clearTimeout(timer);
 		timer = window.setTimeout(function() {
-			if(preview.isMathjax)
-				mathjaxHandler.start(marked(value), function(value) {
-					oPreview.innerHTML = value;
-				});
-			else
-				oPreview.innerHTML = marked(value);
-		}, 300);
+			mathjaxHandler.start(marked(value), function(value) {
+				oPreview.innerHTML = value;
+			});
+		}, 500);
 
 	});
 
