@@ -212,6 +212,112 @@
 		};
 	}
 
+	utils.zoom = function(imageEle) {
+		if(imageEle.zooming) return;
+		if(imageEle.getAttribute('zoom-in') == null) {
+			zoomIn();
+		} else {
+			zoomOut();
+		}
+
+		function zoomIn() {
+			// 保存原始信息，供zoomOut时恢复
+			imageEle.srcCssText = imageEle.style.cssText;
+			imageEle.srcWidth = imageEle.width;
+			imageEle.srcHeight = imageEle.height;
+			imageEle.srcAbsOffset = utils.getElementAbsoluteOffset(imageEle);
+			// 判断是否进行过初始化
+			if(!imageEle.coverEle) {
+				var newImg = new Image();
+				newImg.src = imageEle.src;
+				imageEle.realWidth = newImg.width;
+				imageEle.realHeight = newImg.height;
+				imageEle.boxEle = document.createElement('div');
+				imageEle.coverEle = document.createElement('div');
+				imageEle.titleEle = document.createElement('div');
+				imageEle.parentElement.insertBefore(imageEle.boxEle, imageEle);
+				imageEle.boxEle.appendChild(imageEle);
+				imageEle.coverEle.style.cssText = 'width: 100%; height: 100%;background: rgba(29, 29, 29, .8);z-index: 999;position: fixed; top:0;left:0';
+				imageEle.coverEle.appendChild(imageEle.titleEle);
+				imageEle.titleEle.style.cssText = 'width: 100%;font-size: 15px;color: #FFFFFF; font-family: "lucida grande", "lucida sans unicode", lucida, helvetica, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;position: absolute; text-align: center; bottom: 8px';
+				imageEle.titleEle.innerText = imageEle.title;
+				document.body.appendChild(imageEle.coverEle);
+				newImg = null;
+			}
+			imageEle.setAttribute('zoom-in', '');
+			var scaledWidth = 0,
+				scaledHeight = 0,
+				posLeft = 0,
+				posTop = 16,
+				visualWidth = window.innerWidth,
+				visualHeight = window.innerHeight - 56;
+			if(imageEle.realWidth <= visualWidth && imageEle.realHeight <= visualHeight) {
+				scaledWidth = imageEle.realWidth;
+				scaledHeight = imageEle.realHeight;
+			} else {
+				var widthRatio = imageEle.realWidth / visualWidth;
+				var heightRatio = imageEle.realHeight / visualHeight;
+				if(widthRatio < heightRatio) {
+					scaledWidth = imageEle.realWidth / heightRatio;
+					scaledHeight = visualHeight;
+				} else {
+					scaledWidth = visualWidth;
+					scaledHeight = imageEle.realHeight / widthRatio;
+				}
+			}
+			posLeft += (visualWidth - scaledWidth) / 2;
+			posTop += (visualHeight - scaledHeight) / 2;
+			Animation.animate('expoEaseOut', 0, 1, 350, {
+				start: function() {
+					imageEle.boxEle.style.cssText = 'width: ' + imageEle.width + 'px;height:' + imageEle.height + 'px;';
+					imageEle.coverEle.style.display = 'block';
+					imageEle.style['z-index'] = 1000;
+					imageEle.style.position = 'fixed';
+					imageEle.zooming = true;
+				},
+				update: function(data) {
+					imageEle.coverEle.style.opacity = data;
+					imageEle.style.width = Animation.mapValueInRange(data, 0, 1, imageEle.srcWidth, scaledWidth) + 'px';
+					imageEle.style.height = Animation.mapValueInRange(data, 0, 1, imageEle.srcHeight, scaledHeight) + 'px';
+					imageEle.style.left = Animation.mapValueInRange(data, 0, 1, imageEle.srcAbsOffset.left, posLeft) + 'px';
+					imageEle.style.top = Animation.mapValueInRange(data, 0, 1, imageEle.srcAbsOffset.top, posTop) + 'px';
+				},
+				finish: function() {
+					imageEle.zooming = false;
+				}
+			});
+			imageEle.style['max-width'] = 'none';
+			imageEle.style['max-height'] = 'none';
+			imageEle.coverEle.onclick = zoomOut;
+		}
+
+		function zoomOut() {
+			var currWidth = imageEle.width;
+			var cuurHeight = imageEle.height;
+			var currLeft = parseInt(imageEle.style.left);
+			var currTop = parseInt(imageEle.style.top);
+			Animation.animate('expoEaseOut', 1, 0, 300, {
+				start: function() {
+					imageEle.zooming = true;
+				},
+				update: function(data) {
+					imageEle.coverEle.style.opacity = data;
+					imageEle.style.width = Animation.mapValueInRange(data, 1, 0, currWidth, imageEle.srcWidth) + 'px';
+					imageEle.style.height = Animation.mapValueInRange(data, 1, 0, cuurHeight, imageEle.srcHeight) + 'px';
+					imageEle.style.left = Animation.mapValueInRange(data, 1, 0, currLeft, imageEle.srcAbsOffset.left) + 'px';
+					imageEle.style.top = Animation.mapValueInRange(data, 1, 0, currTop, imageEle.srcAbsOffset.top) + 'px';
+				},
+				finish: function() {
+					imageEle.boxEle.style.cssText = '';
+					imageEle.coverEle.style.display = 'none';
+					imageEle.style.cssText = imageEle.srcCssText;
+					imageEle.removeAttribute('zoom-in');
+					imageEle.zooming = false;
+				}
+			});
+		}
+	}
+
 	/*radio group*/
 	var aRadio = document.querySelectorAll('.radio-group');
 	for(var i = 0; i < aRadio.length; i++) {

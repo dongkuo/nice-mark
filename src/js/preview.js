@@ -2,6 +2,10 @@
 	var oPreviewContainer = document.getElementById('preview-container');
 	var oPreviewWrap = document.getElementById('preview-wrap');
 	var oPreview = document.getElementById('preview');
+	var oContentCheckbox = document.getElementById('content-checkbox');
+	var oContentContainer = document.getElementById('content-container');
+	var oContentWrap = document.getElementById('content-wrap');
+	var oContentWords = document.getElementById('content-words');
 	var oAlignRadioGroup = document.getElementById('align-radio-group');
 	var mathjaxBuffer = document.getElementById('mathjax-buffer');
 	var chartBuffer = document.getElementById('chart-buffer');
@@ -11,6 +15,10 @@
 
 	renderer.link = function(href, title, text) {
 		return handleLink(href, title, text);
+	}
+
+	renderer.image = function(href, title, text) {
+		return "<img src=" + href + " title='" + text + "' onclick='utils.zoom(this)'/><i style='margin:8px auto 0 auto; display:table'>" + text + "</i>";
 	}
 
 	var flowchartConfig = {
@@ -220,6 +228,114 @@
 	utils.addHotKey('ctrl+ l', function() {
 		preview.export2pdf();
 	});
+
+	/*显示/隐藏 目录*/
+
+	oContentCheckbox.onchange = function(isChecked) {
+		if(isChecked)
+			preview.openContent();
+		else
+			preview.closeContent();
+	}
+
+	preview.openContent = function() {
+		var width = 0;
+		var height = 0;
+		oContentWrap.innerHTML = buildContent(oContentWrap, true);
+		oContentWords.innerText = '字数：' + oPreviewWrap.innerText.replace(/\s|\n/img, '').length;
+		utils.Animation.animate('expoEaseOut', 0, 1, 300, {
+			start: function() {
+				oContentContainer.style.display = 'block';
+				width = getComputedWidth(oContentContainer);
+				height = getComputedHeight(oContentContainer);
+			},
+			update: function(value) {
+				oContentContainer.style.width = utils.Animation.mapValueInRange(value, 0, 1, 0, width) + 'px';
+				oContentContainer.style.height = utils.Animation.mapValueInRange(value, 0, 1, 0, height) + 'px';
+			}
+		});
+	}
+
+	preview.closeContent = function() {
+		var width = 0;
+		var height = 0;
+		utils.Animation.animate('expoEaseOut', 0, 1, 200, {
+			start: function() {
+				var containerStyle = window.getComputedStyle(oContentContainer, null);
+				width = parseInt(containerStyle.width);
+				height = parseInt(containerStyle.height);
+			},
+			update: function(value) {
+				oContentContainer.style.width = utils.Animation.mapValueInRange(value, 0, 1, width, 0) + 'px';
+				oContentContainer.style.height = utils.Animation.mapValueInRange(value, 0, 1, height, 0) + 'px';
+			},
+			finish: function() {
+				oContentContainer.style.display = 'none';
+				oContentContainer.style.width = width + 'px';
+				oContentContainer.style.height = height + 'px';
+			}
+		});
+	}
+
+	function buildContent(rootEle, isIndex) {
+		var buff = "";
+		var tagStack = new Array();
+		var indexStack = isIndex ? new Array() : null;
+		var titleEles = rootEle.querySelectorAll('h1, h2, h3, h4, h5, h6');
+		for(var i = 0; i < titleEles.length; i++) {
+			var tag = titleEles[i].tagName;
+			while(true) {
+				if(tagStack.length == 0 || tag > tagStack[tagStack.length - 1]) {
+					// 处理index
+					var index = '';
+					if(tag != "H1" && isIndex) {
+						indexStack.push(1);
+						for(var i in indexStack) {
+							index += indexStack[i] + '.'
+						}
+					}
+					// 处理tag
+					tagStack.push(tag);
+					buff += '<ul><li><a href="#' + titleEles[i].getAttribute('source-line') + '">' + index + '' + titleEles[i].innerText + '</a>';
+					break;
+				}
+				if(tag == tagStack[tagStack.length - 1]) {
+					// 处理index
+					var index = '';
+					if(isIndex) {
+						indexStack[indexStack.length - 1]++;
+						for(var i in indexStack) {
+							index += indexStack[i] + '.'
+						}
+					}
+					// 处理tag
+					tagStack.pop();
+					tagStack.push(tag);
+					buff += '</li><li><a href="#' + titleEles[i].getAttribute('source-line') + '">' + index + ' ' + titleEles[i].innerText + '</a>'
+					break;
+				}
+				if(isIndex) {
+					indexStack.pop();
+				}
+				tagStack.pop();
+
+				buff += '</li></ul>'
+			}
+		}
+		while(tagStack.length != 0) {
+			tagStack.pop();
+			buff += '</li></ul>';
+		}
+		return buff;
+	}
+
+	function getComputedWidth(ele) {
+		return parseInt(window.getComputedStyle(ele, null).width);
+	}
+
+	function getComputedHeight(ele) {
+		return parseInt(window.getComputedStyle(ele, null).height);
+	}
 
 	/*以pdf带出*/
 	preview.export2pdf = function() {
