@@ -204,24 +204,14 @@
 	}
 
 	preview.maximize = function() {
-		utils.Animation.animate('expoEaseOut', 50, 100, 300, {
-			'start': function() {
-				oPreviewContainer.style['z-index'] = 20;
-			},
-			'update': function(value) {
-				oPreviewContainer.style.width = value + '%';
-			}
+		utils.Animation.animate('expoEaseOut', 50, 100, 300, function(value) {
+			oPreviewContainer.style.width = value + '%';
 		});
 	}
 
 	preview.unmaximize = function() {
-		utils.Animation.animate('expoEaseOut', 100, 50, 300, {
-			'update': function(value) {
-				oPreviewContainer.style.width = value + '%';
-			},
-			'finish': function() {
-				oPreviewContainer.style['z-index'] = 0;
-			}
+		utils.Animation.animate('expoEaseOut', 100, 50, 300, function(value) {
+			oPreviewContainer.style.width = value + '%';
 		});
 	}
 
@@ -241,7 +231,7 @@
 	preview.openContent = function() {
 		var width = 0;
 		var height = 0;
-		oContentWrap.innerHTML = buildContent(oContentWrap, true);
+		oContentWrap.innerHTML = buildContent(oPreview, false);
 		oContentWords.innerText = '字数：' + oPreviewWrap.innerText.replace(/\s|\n/img, '').length;
 		utils.Animation.animate('expoEaseOut', 0, 1, 300, {
 			start: function() {
@@ -290,8 +280,8 @@
 					var index = '';
 					if(tag != "H1" && isIndex) {
 						indexStack.push(1);
-						for(var i in indexStack) {
-							index += indexStack[i] + '.'
+						for(var j in indexStack) {
+							index += indexStack[j] + '.'
 						}
 					}
 					// 处理tag
@@ -304,8 +294,8 @@
 					var index = '';
 					if(isIndex) {
 						indexStack[indexStack.length - 1]++;
-						for(var i in indexStack) {
-							index += indexStack[i] + '.'
+						for(var k in indexStack) {
+							index += indexStack[k] + '.'
 						}
 					}
 					// 处理tag
