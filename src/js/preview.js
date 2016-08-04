@@ -345,7 +345,7 @@
 		//			printSelectionOnly: true
 		//		}, function(error, data) {
 		//			if(error) throw err
-		//			utils.fs.writeFile('C:/Users/dongkuo/Desktop/test.pdf', data, 'utf8', function(err) {
+		//			fs.writeFile('C:/Users/dongkuo/Desktop/test.pdf', data, 'utf8', function(err) {
 		//				if(err) throw err
 		//			});
 		//		});

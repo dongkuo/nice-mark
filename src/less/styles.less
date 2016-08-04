@@ -95,6 +95,20 @@ a:visited {
 img {
     border: none;
 }
+button {
+    background: none;
+    border: none;
+    outline: none;
+    font-family: Lato, proxima-nova, 'Helvetica Neue', Arial, 'microsoft yahei';
+    font-size: 15px;
+    color: #333030;
+    border-radius: 2px;
+    padding: 8px 16px;
+    cursor: pointer;
+}
+button:hover {
+    background-color: rgba(153, 153, 153, 0.2);
+}
 ol,
 ul,
 li {
@@ -135,6 +149,15 @@ li {
     -webkit-font-feature-settings: 'liga';
     -webkit-font-smoothing: antialiased;
 }
+.color-cancel {
+    color: #ADADAD;
+}
+.color-success {
+    color: #03A9F4;
+}
+.color-warning {
+    color: #FF5722;
+}
 .horizontal-space-normal {
     margin-left: 10px;
 }
@@ -146,6 +169,9 @@ li {
 }
 .text-center {
     text-align: center;
+}
+.text-right{
+    text-align:right;
 }
 .invisible {
     z-index: -10000;
@@ -167,6 +193,72 @@ li {
 }
 .checkbox[checked] {
     background: #dce1e6;
+}
+.dialog-layout {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    opacity: 0;
+    z-index: 9999;
+    background-color: rgba(0, 0, 0, .6);
+}
+.dialog-layout input {
+    width: 50%;
+}
+.dialog-container {
+    background-color: #FFFFFF;
+    width: 60%;
+    border-radius: 2px;
+    max-width: 600px;
+    margin: 200px auto;
+    box-shadow: 0 14px 45px rgba(0, 0, 0, 0.25), 0 10px 18px rgba(0, 0, 0, 0.22);
+    padding: 8px 24px;
+}
+.dialog-container h1,
+.dialog-container h2,
+.dialog-container h3,
+.dialog-container h4,
+.dialog-container h5,
+.dialog-container h6 {
+    padding: 0;
+    margin: 16px 0 32px;
+}
+.dialog-container {
+    border-left: 8px solid #03A9F4;
+}
+.dialog-container p {
+    margin: 16px 0;
+}
+#toast-layout {
+    position: fixed;
+    top: 150px;
+    width: 100%;
+    text-align: center;
+    display: none;
+    z-index: 30;
+}
+#toast-container {
+    display: inline-block;
+    padding: 8px 16px;
+    border-radius: 2px;
+    color: #FFFFFF;
+    background: #03A9F4;
+    max-width: 50%;
+}
+// cover
+#cover {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: #000000;
+    display: none;
+    opacity: 0.5;
+    z-index: 20;
 }
 //toolbar
 .toolbar {
@@ -237,6 +329,103 @@ li {
     width: 100%;
     height: calc(~"100% - " @titlebar-height);
     position: relative;
+    left: -25%;
+}
+#workspace-container {
+    color: #D9D4CF;
+    position: absolute;
+    background: #3b4042;
+    width: 25%;
+    height: 100%;
+    z-index: 30;
+}
+#workspace-search {
+    position: relative;
+    margin-top: 8px;
+}
+#workspace-search-input {
+    width: calc(~"100%" - 40px);
+    outline: none;
+    border: none;
+    font-size: 16px;
+    font-family: "Lato", "proxima-nova", "Helvetica Neue", Arial, "microsoft yahei";
+    padding: 7px 32px 7px 8px;
+}
+#workspace-search-btn {
+    color: #757575;
+    position: absolute;
+    top: 4px;
+    right: 8px;
+    cursor: default;
+}
+#workspace-search-box {
+    position: absolute;
+    background: #42484a;
+    width: 100%;
+    box-shadow: 0 3px 6px rgba(33, 33, 33,0.16), 0 3px 6px rgba(33,33,33,0.23);
+    height: 250px;
+    overflow: auto;
+    display: none;
+}
+#workspace-search-box::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+    background-color: #E0E3DA;
+}
+#workspace-search-box::-webkit-scrollbar-thumb {
+    background-color: #BBC3BB;
+}
+#workspace-search-box::-webkit-scrollbar-thumb:hover {
+    background-color: #6E7783;
+}
+#workspace-search-box li {
+    padding: 3px 8px;
+    cursor: default;
+}
+#workspace-search-box li[selected]{
+    background: #5D6264;
+}
+#workspace-search-box li:hover {
+    background: #5D6264;
+}
+.workspace-search-box-doc-name {
+    font-size: 14px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.workspace-search-box-doc-location {
+    color: #acafb1;
+    font-size: 12px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+#workspace-tree {
+    padding-top: 8px;
+    overflow: auto;
+    width: 100%;
+    height: calc(~"100% - "48px);
+}
+#workspace-tree::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+    background-color: #363b3e;
+}
+#workspace-tree::-webkit-scrollbar-corner {
+    background-color: #363b3e;
+}
+#workspace-tree::-webkit-scrollbar-thumb {
+    background-color: #45494a;
+}
+#workspace-tree::-webkit-scrollbar-thumb:hover {
+    background-color: #555555;
+}
+#main-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    left: 25%;
 }
 // editor
 #editor-container {

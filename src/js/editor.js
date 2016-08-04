@@ -1,10 +1,12 @@
 (function() {
 
+	const fs = require('fs');
+
 	var oEditorContainer = document.getElementById('editor-container');
 	var oEditor = document.getElementById('editor');
 	const dialog = require('electron').remote.dialog;
 
-	var editor = {};
+	var editor = new Object();
 	var path = null;
 
 	var codeMirror = CodeMirror(oEditor, {
@@ -18,7 +20,10 @@
 		dragDrop: false,
 		gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
 		extraKeys: {
-			"Enter": "newlineAndIndentContinueMarkdownList"
+			"Enter": "newlineAndIndentContinueMarkdownList",
+			"Ctrl-Q": function(cm) {
+				cm.foldCode(cm.getCursor());
+			}
 		}
 	});
 
@@ -273,13 +278,26 @@
 		save2file(path);
 	});
 
+	utils.addHotKey('ctrl + p', function() {
+		utils.showDialog({
+			title: '未保存',
+			content: '当前文档暂未保存，确定打开新文档？',
+			positive: function() {
+				dismissDialog(messageDialog);
+				read();
+			},
+			type: 1
+		});
+	});
+
 	function save2file(savePath) {
-		utils.fs.writeFile(savePath, doc.getValue(), 'utf8', function(err) {
-			if(err) throw err
+		fs.writeFile(savePath, doc.getValue(), 'utf8', function(err) {
+			if(err) utils.showToast(err, 2);
 			if(savePath == path) {
 				win.setTitle(path);
 				doc.markClean();
 			}
+			utils.showToast("保存成功!");
 		});
 	}
 

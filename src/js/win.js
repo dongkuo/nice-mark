@@ -1,16 +1,8 @@
 (function() {
-	const BrowserWindow = require('electron').remote.BrowserWindow;
-	const bw = BrowserWindow.getFocusedWindow();
-	var win = {
-		BrowserWindow: BrowserWindow,
-		bw: bw
-	};
+	const bw = require('electron').remote.getCurrentWindow();
+	var win = new Object();
 
 	var oTitle = document.getElementById('titlebar-title');
-	//	var oFullscreen = document.getElementById('btn-fullscreen');
-	//	var oMinimize = document.getElementById('btn-minimize');
-	//	var oMaximize = document.getElementById('btn-maximize');
-	//	var oClose = document.getElementById('btn-close');
 
 	win.toogleFullScreen = function() {
 		bw.setFullScreen(!bw.isFullScreen());
@@ -29,11 +21,17 @@
 
 	win.close = function() {
 		bw.close();
+		workspace.cache();
 	}
 
 	win.setTitle = function(title) {
 		oTitle.textContent = title;
 	}
+
+	bw.on('close', function() {
+		workspace.cache();
+		bw = null;
+	})
 
 	this.win = win;
 })()

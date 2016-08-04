@@ -3,7 +3,132 @@
  */
 (function() {
 
-	var utils = {};
+	HTMLElement.prototype.one = function(ev, callback) {
+		this['on' + ev] = function(ev) {
+			callback.call(this, ev);
+			this['on' + ev] = null;
+		};
+	}
+
+	const utils = new Object();
+	const colorArray = ['#03A9F4', '#FF5722', '#F44336'];
+	/*dialog*/
+	var messageDialog = document.getElementById('message-dialog');
+
+	// option (Object): title, content, cancelable, callback, type
+	utils.showDialog = function(option, ele) {
+		ele = ele || messageDialog;
+		if(!ele) {
+			return;
+		}
+		var dialogContainer = ele.querySelector('.dialog-container');
+		if(!dialogContainer) {
+			return;
+		}
+		if(option) {
+			if(!option.type) {
+				option.type = 0;
+			}
+			dialogContainer.style['border-left-color'] = colorArray[option.type];
+			if(option.title) {
+				var dialogTitle = dialogContainer.querySelector('.dialog-title');
+				if(dialogTitle) {
+					dialogTitle.innerText = option.title;
+					dialogTitle.style.color = colorArray[option.type];
+				}
+			}
+			if(option && option.content) {
+				var dialogContent = dialogContainer.querySelector('.dialog-content');
+				if(dialogContent) {
+					dialogContent.innerText = option.content;
+				}
+			}
+			var btnSuccess = dialogContainer.querySelector('.btn-positive');
+			if(btnSuccess) {
+				btnSuccess.style.color = colorArray[option.type];
+				if(option.positive && option.positive instanceof Function) {
+					btnSuccess.onclick = option.positive;
+				}
+			}
+			if(option.cancelable || typeof option.cancelable == 'undefined') {
+				ele.setAttribute('cancelable', '');
+			} else {
+				ele.removeAttribute('cancelable');
+			}
+		}
+		ele.style.display = 'block';
+		utils.Animation.animate('expoEaseOut', 0, 1, 300, function(value) {
+			ele.style.opacity = value;
+			dialogContainer.style['margin-top'] = Animation.mapValueInRange(value, 0, 1, 150, 200) + 'px';
+		});
+	}
+
+	utils.dismissDialog = function(ele) {
+		if(!ele || !ele.hasClass('dialog-layout')) {
+			return;
+		}
+		var dialogContainer = ele.querySelector('.dialog-container');
+		if(!dialogContainer) {
+			return;
+		}
+		utils.Animation.animate('expoEaseOut', 1, 0, 300, {
+			update: function(value) {
+				ele.style.opacity = value;
+				dialogContainer.style['margin-top'] = Animation.mapValueInRange(value, 1, 0, 200, 150) + 'px';
+			},
+			finish: function() {
+				ele.style.display = 'none';
+			}
+		});
+	}
+
+	var aDialog = document.querySelectorAll('.dialog-layout');
+	var aDialogDismiss = document.querySelectorAll('*[dialog-dismiss]');
+	for(var i = 0; aDialog && i < aDialog.length; i++) {
+		aDialog[i].onclick = function(ev) {
+			if(ev.target == this && this.getAttribute('cancelable') != null)
+				utils.dismissDialog(this);
+		}
+	}
+	for(var i = 0; aDialogDismiss && i < aDialogDismiss.length; i++) {
+		aDialogDismiss[i].onclick = function() {
+			utils.dismissDialog(document.querySelector(this.getAttribute('dialog-dismiss')));
+		}
+	}
+	/*toast*/
+	var toastLayout = document.getElementById('toast-layout');
+	var toastContainer = document.getElementById('toast-container');
+	utils.showToast = function(text, type) {
+		if(toastLayout.style.display === 'block') {
+			return;
+		}
+		toastLayout.style.display = 'block';
+		toastContainer.innerText = text;
+		if(!type) {
+			type = 0;
+		}
+		toastContainer.style.backgroundColor = colorArray[type];
+		Animation.animate('expoEaseOut', 0, 1, 300, {
+			update: function(value) {
+				toastContainer.style.opacity = value;
+				toastLayout.style.top = Animation.mapValueInRange(value, 0, 1, 140, 150) + 'px';
+			},
+			finish: function() {
+				setTimeout(function() {
+					Animation.animate('expoEaseOut', 1, 0, 300, {
+						update: function(value) {
+							toastContainer.style.opacity = value;
+							toastLayout.style.top = Animation.mapValueInRange(value, 1, 0, 150, 140) + 'px';
+						},
+						finish: function() {
+							toastLayout.style.display = 'none';
+						}
+					});
+				}, type ? type * 1500 : 1500);
+			}
+		});
+
+	}
 
 	/*计算绝对偏移量*/
 	utils.getElementAbsoluteOffset = function(ele) {
@@ -351,7 +476,31 @@
 		}
 	}
 
-	utils.fs = require('fs');
+	/*遮罩*/
+	var oCover = document.getElementById("cover");
+	utils.showCover = function() {
+		utils.Animation.animate('expoEaseOut', 0, 0.5, 300, {
+			'start': function() {
+				oCover.style.opacity = "0";
+				oCover.style.display = "block";
+			},
+			'update': function(value) {
+				oCover.style.opacity = value;
+			}
+		});
+		return oCover;
+	}
+
+	utils.dismissCover = function() {
+		utils.Animation.animate('expoEaseOut', 0.5, 0, 300, {
+			'update': function(value) {
+				oCover.style.opacity = value;
+			},
+			'finish': function() {
+				oCover.style.display = "none";
+			}
+		});
+	}
 
 	this.utils = utils;
 })();
