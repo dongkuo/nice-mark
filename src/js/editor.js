@@ -43,10 +43,28 @@
 		return doc.getValue();
 	}
 
+	editor.readFile = function(filePath) {
+		fs.readFile(filePath, 'utf8', function(err, data) {
+			if(err) {
+				utils.showToast(err, 2);
+				return;
+			}
+			editor.setContent(data);
+			path = filePath;
+			win.setTitle(filePath);
+		});
+
+	}
+
 	/*设置内容*/
 	editor.setContent = function(content) {
 		codeMirror.setValue(content);
-	};
+		doc.markClean();
+	}
+
+	editor.isClean = function() {
+		return doc.isClean();
+	}
 
 	editor.toggleMaximize = function() {
 		if(editor.isMaximize) {
@@ -135,6 +153,23 @@
 	editor.table = function() {
 		var pos = newlineIfNeed();
 		appendBlockChar('|  列1    |  列2    |  列3    |\n|--------- |--------- |---------|\n|   行1   |  行1    |  行1    |', 2);
+	}
+
+	editor.save = function(callback) {
+		if(!path) {
+			dialog.showSaveDialog({
+				title: '保存文档',
+				properties: ['openFile'],
+				defaultPath: 'nicemark.md'
+			}, function(filename) {
+				if(filename) {
+					path = filename;
+					save2file(filename, callback);
+				}
+			});
+			return;
+		}
+		save2file(path, callback);
 	}
 
 	// 添加对称的行内符号
@@ -234,13 +269,7 @@
 			alert('请拖入markdown文件...');
 			return;
 		}
-		var reader = new FileReader();
-		reader.onload = function(e) {
-			editor.setContent(e.target.result);
-			path = file.path || file.name;
-			win.setTitle(file.path);
-		};
-		reader.readAsText(file, 'utf-8');
+		editor.readFile(file.path);
 		return false;
 	};
 
@@ -262,20 +291,7 @@
 		if(doc.isClean()) {
 			return;
 		}
-		if(!path) {
-			dialog.showSaveDialog({
-				title: '保存文档',
-				properties: ['openFile'],
-				defaultPath: 'nicemark.md'
-			}, function(filename) {
-				if(filename) {
-					path = filename;
-					save2file(filename);
-				}
-			});
-			return;
-		}
-		save2file(path);
+		editor.save();
 	});
 
 	utils.addHotKey('ctrl + p', function() {
@@ -290,14 +306,18 @@
 		});
 	});
 
-	function save2file(savePath) {
+	function save2file(savePath, callback) {
 		fs.writeFile(savePath, doc.getValue(), 'utf8', function(err) {
-			if(err) utils.showToast(err, 2);
+			if(err) {
+				utils.showToast(err, 2);
+				return;
+			}
 			if(savePath == path) {
 				win.setTitle(path);
 				doc.markClean();
 			}
 			utils.showToast("保存成功!");
+			if(callback instanceof Function) callback();
 		});
 	}
 

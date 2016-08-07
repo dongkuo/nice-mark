@@ -18,9 +18,10 @@
 	// option (Object): title, content, cancelable, callback, type
 	utils.showDialog = function(option, ele) {
 		ele = ele || messageDialog;
-		if(!ele) {
+		if(!ele || ele.isShowing) {
 			return;
 		}
+		ele.isShowing = true;
 		var dialogContainer = ele.querySelector('.dialog-container');
 		if(!dialogContainer) {
 			return;
@@ -43,11 +44,35 @@
 					dialogContent.innerText = option.content;
 				}
 			}
-			var btnSuccess = dialogContainer.querySelector('.btn-positive');
-			if(btnSuccess) {
-				btnSuccess.style.color = colorArray[option.type];
-				if(option.positive && option.positive instanceof Function) {
-					btnSuccess.onclick = option.positive;
+			var positiveBtn = dialogContainer.querySelector('.btn-positive');
+			var negativeBtn = dialogContainer.querySelector('.btn-negative');
+			if(positiveBtn) {
+				positiveBtn.style.color = colorArray[option.type];
+				if(option.positive instanceof Function) {
+					positiveBtn.onclick = option.positive;
+				} else if(option.positive) {
+					if(option.positive.text){
+						positiveBtn.textContent = option.positive.text;
+					}
+					if(option.positive.callback){
+						positiveBtn.onclick = option.positive.callback;
+					}
+				}
+			}
+			if(negativeBtn) {
+				negativeBtn.style.display = option.negative ? 'inline' : 'none';
+				if(option.negative) {
+					negativeBtn.style.color = colorArray[option.type];
+					if(option.negative instanceof Function) {
+						negativeBtn.onclick = option.negative;
+					} else if(option.negative) {
+						if(option.negative.text){
+							negativeBtn.textContent = option.negative.text;
+						}
+						if(option.negative.callback){
+							negativeBtn.onclick = option.negative.callback;
+						}
+					}
 				}
 			}
 			if(option.cancelable || typeof option.cancelable == 'undefined') {
@@ -64,9 +89,8 @@
 	}
 
 	utils.dismissDialog = function(ele) {
-		if(!ele || !ele.hasClass('dialog-layout')) {
-			return;
-		}
+		ele = ele || messageDialog;
+		ele.isShowing = false;
 		var dialogContainer = ele.querySelector('.dialog-container');
 		if(!dialogContainer) {
 			return;
@@ -92,13 +116,13 @@
 	}
 	for(var i = 0; aDialogDismiss && i < aDialogDismiss.length; i++) {
 		aDialogDismiss[i].onclick = function() {
-			utils.dismissDialog(document.querySelector(this.getAttribute('dialog-dismiss')));
+			utils.dismissDialog(document.querySelector('#' + this.getAttribute('dialog-dismiss')));
 		}
 	}
 	/*toast*/
 	var toastLayout = document.getElementById('toast-layout');
 	var toastContainer = document.getElementById('toast-container');
-	utils.showToast = function(text, type) {
+	utils.showToast = function(text, type, callback) {
 		if(toastLayout.style.display === 'block') {
 			return;
 		}
@@ -122,6 +146,7 @@
 						},
 						finish: function() {
 							toastLayout.style.display = 'none';
+							if(callback instanceof Function) callback();
 						}
 					});
 				}, type ? type * 1500 : 1500);

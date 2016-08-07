@@ -44,14 +44,36 @@
 	</head>
 
 	<body>
+		<!--关联本地目录dialog-->
+		<div id="add-local-folder-dialog" class="dialog-layout" cancelable>
+			<div class="dialog-container">
+				<h3>添加本地目录</h3>
+				<p>
+					<label for="local-folder-input">目录：</label>
+					<input id="local-folder-input" type="text"  disabled/> &#12288;
+					<a href="javascript:void(0)" onclick="workspace.chooseLocalFolder()">点击选择...</a>
+				</p>
+				<p>
+					<label for="local-name-input">名称：</label>
+					<input id="local-name-input" type="text" onchange="workspace.checkLocalName()"/> &#12288;
+					<span id="local-tip" class="color-tip">工作空间中显示的名称</span>
+				</p>
+				<p class="text-right">
+					<button class="color-cancel" dialog-dismiss="add-local-folder-dialog">取消</button>
+					<button id="btn-local-submit" class="btn-positive color-success">添加</button>
+				</p>
+			</div>
+		</div>
+		<!--关联本地目录dialog end-->
 		<!--message-dialog-->
 		<div id="message-dialog" class="dialog-layout" cancelable>
 			<div class="dialog-container">
 				<h3 class="dialog-title"></h3>
 				<p class="dialog-content"></p>
 				<p class="text-right">
-					<button class="color-cancel" dialog-dismiss="#message-dialog">取消</button>
 					<button class="color-success btn-positive">确定</button>
+					<button class="color-success btn-negative"></button>
+					<button class="color-cancel" dialog-dismiss="message-dialog">取消</button>
 				</p>
 			</div>
 		</div>
@@ -71,10 +93,10 @@
 			<img id="titlebar-logo" src="img/logo.png" />
 			<p id="titlebar-title">NiceMark，享受书写的快乐</p>
 			<ul id="titlebar-control">
-				<li id="btn-fullscreen" class="material-icons" onclick="win.toogleFullScreen()">fullscreen</li>
-				<li id="btn-minimize" class="material-icons" onclick="win.minimize()">remove</li>
-				<li id="btn-maximize" class="material-icons" onclick="win.toggleMaximize()">crop_square</li>
-				<li id="btn-close" class="material-icons" onclick="win.close()">close</li>
+				<li class="material-icons" onclick="win.toogleFullScreen()">fullscreen</li>
+				<li class="material-icons" onclick="win.minimize()">remove</li>
+				<li class="material-icons" onclick="win.toggleMaximize()">crop_square</li>
+				<li class="material-icons" onclick="win.preClose()">close</li>
 			</ul>
 		</div>
 		<!--主要部分-->

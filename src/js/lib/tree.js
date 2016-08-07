@@ -15,6 +15,10 @@
 			this.className = this.className.replace(reg, ' ');
 		}
 	}
+	
+	HTMLElement.prototype.removeAllClass = function(){
+		this.className = '';
+	}
 
 	HTMLElement.prototype.toggleClass = function(cls) {
 		if(this.hasClass(cls)) {
@@ -26,6 +30,11 @@
 
 	HTMLElement.prototype.replaceClass = function(oCls, nCls) {
 		this.removeClass(oCls);
+		this.addClass(nCls);
+	}
+	
+	HTMLElement.prototype.replaceAllClass = function(nCls) {
+		this.removeAllClass();
 		this.addClass(nCls);
 	}
 
@@ -101,13 +110,13 @@
 						tree.event.lfclick.call(tree, node, ev);
 					}
 				}
-				// rtclick
+			// rtclick
 			containerEle.onmousedown = function(ev) {
 					if(ev.button == 2 && tree.event.rtclick instanceof Function) {
 						tree.event.rtclick.call(tree, node, ev);
 					}
-				}
-				// dbclick
+			}
+			// dbclick
 			containerEle.ondblclick = function(ev) {
 					if(tree.event.dbclick instanceof Function) {
 						tree.event.dbclick.call(tree, node, ev);
@@ -115,10 +124,10 @@
 				}
 				// toggle
 			toggleEle.onclick = function(ev) {
+				tree.toggle(node, true);
 				if(tree.event.toggle instanceof Function) {
 					tree.event.toggle.call(tree, node, ev);
 				}
-				tree.toggle(node, true);
 			}
 			if(tree.event.append instanceof Function) {
 				tree.event.append(node, nodeEle);
