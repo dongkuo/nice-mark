@@ -201,9 +201,83 @@
 		}
 	});
 
+	tree.on('append', function(node, ele) {
+		var nodeContainer = ele.querySelector('.tree-node-container');
+		bindNodeMenu(nodeContainer, node);
+	});
+
+	/*结点菜单*/
+	const folderMenuTemplate = [{
+		label: '新建'
+	}, {
+		label: '刷新',
+		click: refreshFolder
+	}, {
+		label: '排序',
+		submenu: [{
+			label: '名称',
+			type: 'checkbox'
+		}, {
+			label: '修改日期',
+			type: 'checkbox'
+		}, {
+			label: '类型',
+			type: 'checkbox'
+		}, {
+			label: '大小',
+			type: 'checkbox'
+		}, {
+			type: 'separator'
+		}, {
+			label: '递增',
+			type: 'checkbox'
+		}, {
+			label: '递减',
+			type: 'checkbox'
+		}]
+	}, {
+		label: '打开所在目录'
+	}];
+
+	const fileMenuTemplate = [{
+		label: '打开'
+	}, {
+		label: '打开所在目录'
+	}, {
+		type: 'separator'
+	}, {
+		label: '复制'
+	}, {
+		label: '剪切'
+	}, {
+		label: '粘贴'
+	}, {
+		label: '删除'
+	}, {
+		label: '重命名'
+	}];
+
+	const folderMenu = Menu.buildFromTemplate(folderMenuTemplate);
+	const fileMenu = Menu.buildFromTemplate(fileMenuTemplate);
+	var currentNode = null;
+
+	function bindNodeMenu(nodeContainer, node) {
+		nodeContainer.addEventListener('contextmenu', function(e) {
+			e.preventDefault();
+			e.stopPropagation();
+			var menu = node.children ? folderMenu : fileMenu;
+			currentNode = node;
+			menu.popup(bw);
+		}, false)
+	}
+
+	function refreshFolder() {
+		listNode(currentNode, true);
+	}
+
 	function listNode(node, isNotLazy) {
-		if(!node.children || !isNotLazy && node.children.length != 0) return; // 懒加载
-		console.log('listNode');
+		if(!node || !node.children || !isNotLazy && node.children.length != 0) return; // 懒加载
+		tree.removeChildren(node);
 		var nodeArray = [];
 		var listFile = fs.readdirSync(node.path);
 		for(var i in listFile) {

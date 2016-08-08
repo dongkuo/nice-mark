@@ -1,6 +1,8 @@
 (function() {
 
 	const fs = require('fs');
+	const Menu = require('electron').remote.Menu;
+	const bw = require('electron').remote.getCurrentWindow();
 
 	var oEditorContainer = document.getElementById('editor-container');
 	var oEditor = document.getElementById('editor');
@@ -305,6 +307,34 @@
 			type: 1
 		});
 	});
+
+	/*添加右键菜单*/
+	const template = [{
+		role: 'undo'
+	}, {
+		role: 'redo'
+	}, {
+		type: 'separator'
+	}, {
+		role: 'cut'
+	}, {
+		role: 'copy'
+	}, {
+		role: 'paste'
+	}, {
+		role: 'pasteandmatchstyle'
+	}, {
+		role: 'delete'
+	}, {
+		role: 'selectall'
+	}];
+
+	const menu = Menu.buildFromTemplate(template);
+	oEditor.addEventListener('contextmenu', function(e) {
+		e.preventDefault();
+		e.stopPropagation();
+		menu.popup(bw);
+	}, false)
 
 	function save2file(savePath, callback) {
 		fs.writeFile(savePath, doc.getValue(), 'utf8', function(err) {
