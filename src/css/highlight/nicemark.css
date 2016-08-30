@@ -1,13 +1,8 @@
-/**
- * Obsidian style
- * ported by Alexander Marenin (http://github.com/ioncreature)
- */
-
 .hljs {
   display: block;
   overflow-x: auto;
   padding: 0.5em;
-  background: #282b2e;
+  background: #364A53;
 }
 
 .hljs-keyword,
@@ -75,14 +70,6 @@
   color: #A082BD
 }
 
-#preview pre {
-	margin: 24px 0;
-	border-radius: 4px;
-	padding: 10px 15px;
-	color: white;
-	background-color: #364A53;
-}
-
 #preview code{
-	font-family: 'source-code', "microsoft yahei";
+  font-family: 'source-code', "microsoft yahei", serif;
 }

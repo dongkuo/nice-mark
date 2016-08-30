@@ -24,8 +24,9 @@
         html: /^ *(?:comment *(?:\n|\s*$)|closed *(?:\n{2,}|\s*$)|closing *(?:\n{2,}|\s*$))/,
         def: /^ *\[([^\]]+)\]: *<?([^\s>]+)>?(?: +["(]([^\n]+)[")])? *(?:\n+|$)/,
         table: noop,
-        paragraph: /^((?:[^\n]+\n?(?!hr|heading|lheading|blockquote|tag|def))+)\n*/,
-        text: /^[^\n]+/
+        text: /^[^\n]+/,
+        latex: /^ *(\${2,})[ \.]*(\S+)? *\n([\s\S]*?)\s*\1 *(?:\n+|$)/,
+        paragraph: /^((?:[^\n]+\n?(?!hr|heading|lheading|blockquote|tag|def|latex))+)\n*/,
     };
 
     block.bullet = /(?:[*+-]|\d+\.)/;
@@ -60,6 +61,7 @@
     ('blockquote', block.blockquote)
     ('tag', '<' + block._tag)
     ('def', block.def)
+    ('latex', block.latex)
     ();
 
     /**
@@ -67,6 +69,7 @@
      */
 
     block.normal = merge({}, block);
+
 
     /**
      * GFM Block Grammar
@@ -167,6 +170,18 @@
                 this.tokens.push({
                     type: 'code',
                     text: !this.options.pedantic ? cap.replace(/\n+$/, '') : cap,
+                    "line": this.line
+                });
+                this.line += this.countLine(cap[0]);
+                continue;
+            }
+
+            // latex
+            if (cap = this.rules.latex.exec(src)) {
+                src = src.substring(cap[0].length);
+                this.tokens.push({
+                    type: 'latex',
+                    text: cap[3],
                     "line": this.line
                 });
                 this.line += this.countLine(cap[0]);
@@ -452,7 +467,7 @@
             }
         }
         return count;
-    }
+    };
 
     /**
      * Inline-Level Grammar
@@ -469,9 +484,10 @@
         strong: /^__([\s\S]+?)__(?!_)|^\*\*([\s\S]+?)\*\*(?!\*)/,
         em: /^\b_((?:[^_]|__)+?)_\b|^\*((?:\*\*|[\s\S])+?)\*(?!\*)/,
         code: /^(`+)\s*([\s\S]*?[^`])\s*\1(?!`)/,
+        latex: /^(\$+)\s*([\s\S]*?[^\$])\s*\1(?!\$)/,
         br: /^ {2,}\n(?!\s*$)/,
         del: noop,
-        text: /^[\s\S]+?(?=[\\<!\[_*`]| {2,}\n|$)/
+        text: /^[\s\S]+?(?=[\\<!\[_*`\$]| {2,}\n|$)/
     };
 
     inline._inside = /(?:\[[^\]]*\]|[^\[\]]|\](?=[^\[]*\]))*/;
@@ -613,7 +629,7 @@
                     this.inLink = false;
                 }
                 src = src.substring(cap[0].length);
-                out += this.options.sanitize ? this.options.sanitizer ? this.options.sanitizer(cap[0]) : escape(cap[0]) : cap[0]
+                out += this.options.sanitize ? this.options.sanitizer ? this.options.sanitizer(cap[0]) : escape(cap[0]) : cap[0];
                 continue;
             }
 
@@ -665,6 +681,14 @@
                 out += this.renderer.codespan(escape(cap[2], true));
                 continue;
             }
+
+            // latex
+            if (cap = this.rules.latex.exec(src)) {
+                src = src.substring(cap[0].length);
+                out += this.renderer.latexspan(escape(cap[2], true));
+                continue;
+            }
+
 
             // br
             if (cap = this.rules.br.exec(src)) {
@@ -771,18 +795,23 @@
         }
 
         if (!lang) {
-            return '<pre ' + line + '><code>' + (escaped ? code : escape(code, true)) + '\n</code></pre>';
+            return '<pre class="' + this.options.codePrefix + ' "' + line + '><code>' + (escaped ? code : escape(code, true)) + '\n</code></pre>';
         }
 
         if (lang == 'sequence' || lang == 'flow') {
             return code;
         }
+        return '<pre class="' + this.options.codePrefix + '"' + line + '><code class="' + this.options.langPrefix + escape(lang, true) + '">' + (escaped ? code : escape(code, true)) + '\n</code></pre>\n';
+    };
 
-        return '<pre ' + line + '><code class="' + this.options.langPrefix + escape(lang, true) + '">' + (escaped ? code : escape(code, true)) + '\n</code></pre>\n';
+    Renderer.prototype.latex = function (latex, sourceLine) {
+        var line = this.buildSourceLine(sourceLine);
+        return '<p ' + line + '>$$<br>' + latex + '<br>$$</p>';
     };
 
     Renderer.prototype.blockquote = function (quote, sourceLine) {
-        return '<blockquote>\n' + quote + '</blockquote>\n';
+        var line = this.buildSourceLine(sourceLine);
+        return '<blockquote ' + line + '>\n' + quote + '</blockquote>\n';
     };
 
     Renderer.prototype.html = function (html) {
@@ -800,8 +829,9 @@
     };
 
     Renderer.prototype.list = function (body, ordered, sourceLine) {
+        var line = this.buildSourceLine(sourceLine);
         var type = ordered ? 'ol' : 'ul';
-        return '<' + type + '>\n' + body + '</' + type + '>\n';
+        return '<' + type + ' ' + line + '>\n' + body + '</' + type + '>\n';
     };
 
     Renderer.prototype.listitem = function (text, sourceLine) {
@@ -840,6 +870,10 @@
 
     Renderer.prototype.codespan = function (text) {
         return '<code>' + text + '</code>';
+    };
+
+    Renderer.prototype.latexspan = function (text) {
+        return '$' + text + '$';
     };
 
     Renderer.prototype.br = function () {
@@ -886,7 +920,7 @@
 
     Renderer.prototype.buildSourceLine = function (sourceLine) {
         return this.options.sourceLine ? 'source-line="' + sourceLine + '"' : '';
-    }
+    };
 
     /**
      * Parsing & Compiling
@@ -962,31 +996,29 @@
 
     Parser.prototype.tok = function () {
         switch (this.token.type) {
-            case 'space':
-            {
+            case 'space': {
                 return '';
             }
-            case 'hr':
-            {
+            case 'hr': {
                 return this.renderer.hr(this.token.line);
             }
-            case 'heading':
-            {
+            case 'heading': {
                 return this.renderer.heading(
                     this.inline.output(this.token.text),
                     this.token.depth,
                     this.token.text,
                     this.token.line);
             }
-            case 'code':
-            {
+            case 'code': {
                 return this.renderer.code(this.token.text,
                     this.token.lang,
                     this.token.escaped,
                     this.token.line);
             }
-            case 'table':
-            {
+            case 'latex': {
+                return this.renderer.latex(this.token.text, this.token.line);
+            }
+            case 'table': {
                 var header = '',
                     body = '',
                     i, row, cell, flags, j;
@@ -1024,8 +1056,7 @@
                 }
                 return this.renderer.table(header, body, this.token.line);
             }
-            case 'blockquote_start':
-            {
+            case 'blockquote_start': {
                 var body = '';
                 var line = this.token.line;
 
@@ -1035,8 +1066,7 @@
 
                 return this.renderer.blockquote(body, line);
             }
-            case 'list_start':
-            {
+            case 'list_start': {
                 var body = '',
                     ordered = this.token.ordered;
                 var line = this.token.line;
@@ -1047,8 +1077,7 @@
 
                 return this.renderer.list(body, ordered, line);
             }
-            case 'list_item_start':
-            {
+            case 'list_item_start': {
                 var body = '';
                 var line = this.token.line;
 
@@ -1058,8 +1087,7 @@
 
                 return this.renderer.listitem(body, line);
             }
-            case 'loose_item_start':
-            {
+            case 'loose_item_start': {
                 var body = '';
                 var line = this.token.line;
 
@@ -1069,17 +1097,14 @@
 
                 return this.renderer.listitem(body, line);
             }
-            case 'html':
-            {
+            case 'html': {
                 var html = !this.token.pre && !this.options.pedantic ? this.inline.output(this.token.text) : this.token.text;
                 return this.renderer.html(html, this.token.line);
             }
-            case 'paragraph':
-            {
+            case 'paragraph': {
                 return this.renderer.paragraph(this.inline.output(this.token.text), this.token.line);
             }
-            case 'text':
-            {
+            case 'text': {
                 return this.renderer.paragraph(this.parseText());
             }
         }
