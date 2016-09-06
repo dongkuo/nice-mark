@@ -4,7 +4,7 @@
 
 ## 1. 简介
 
-NiceMark是一款基于!electron(https://github.com/electron/electron)的markdown编辑器。它外观简洁，使用简单，欢迎使用。
+**NiceMark**是一款基于[electron](https://github.com/electron/electron)的markdown编辑器。它外观简洁，使用简单，开源免费，欢迎使用。
 
 下面是软件的截图：
 
@@ -27,3 +27,9 @@ NiceMark是一款基于!electron(https://github.com/electron/electron)的markdow
 目录结构如下图：
 
 ![目录结构](src/screenshot/directory_structure.png)
+
+
+## 3. 下一步计划
+
+1. html、pdf导出；
+2. 文档云存储。
