@@ -1,19 +1,29 @@
+![NiceMark](src/img/icon.png)
+
 # NiceMark
 
 ## 1. 简介
 
-NiceMark是一款基于electron的markdown编辑器，具有如下特色：
+NiceMark是一款基于!electron(https://github.com/electron/electron)的markdown编辑器。它外观简洁，使用简单，欢迎使用。
 
-1. UI简洁 √;
-2. 即时预览 √;
-3. 流程图, 数学表达式支持 √;
-4. 同步滚动 √;
-5. md导入, md, html, pdf多格式导出;
-6. 文档管理
-7. 云同步;
+下面是软件的截图：
 
-![NiceMark](https://github.com/dongkuo/NiceMark/blob/master/src/screenshot/NiceMark.png)
+![截图1](src/screenshot/NiceMark_001.png)
 
-## 2. 使用
+![截图2](src/screenshot/NiceMark_002.png)
 
-开发中...
+![截图3](src/screenshot/NiceMark_003.png)
+
+![截图4](src/screenshot/NiceMark_004.png)
+
+## 2. 安装
+
+第一步：在[electron官网](http://electron.atom.io/)下载相应平台下的electron压缩包，也可以在这个[镜像站](https://npm.taobao.org/mirrors/electron)下载，解压；
+
+第二步：在解压后的文件中找到`resources`文件夹，删除里面的`default_app.asar`文件；将源码的`src`目录重命名为`app`，拷贝到`resources`文件夹中；
+
+第三步：运行electron(.exe)文件。
+
+目录结构如下图：
+
+![目录结构](src/screenshot/directory_structure.png)
