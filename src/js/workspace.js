@@ -48,7 +48,7 @@
                 oWorkspaceSearchBox.style.height = value + 'px';
             }
         });
-    }
+    };
     oWorkspaceSearchInput.onblur = function () {
         utils.Animation.animate('expoEaseOut', 250, 0, 300, {
             'finish': function () {
@@ -58,14 +58,14 @@
                 oWorkspaceSearchBox.style.height = value + 'px';
             }
         });
-    }
+    };
     workspace.toggle = function () {
         if (workspace.isOpen) {
             workspace.close();
         } else {
             workspace.open();
         }
-    }
+    };
 
     workspace.open = function () {
         workspace.isOpen = true;
@@ -80,7 +80,7 @@
                 oMain.style.left = value + '%';
             }
         });
-    }
+    };
 
     workspace.close = function () {
         workspace.isOpen = false;
@@ -92,7 +92,7 @@
                 oMain.style.left = value + '%';
             }
         });
-    }
+    };
 
     workspace.cache = function (callback) {
         fs.writeFile(cachePath, JSON.stringify(tree.top), {
@@ -107,13 +107,13 @@
                 callback();
             }
         });
-    }
+    };
 
     workspace.initLocalFolderDialog = function () {
         oLocalFolderInput.value = oLocalNameInput.value = null;
         oLocalTip.textContent = '工作空间中显示的名称';
         oLocalTip.replaceAllClass('color-tip');
-    }
+    };
 
     workspace.showAddLocalFolderDialog = function () {
         workspace.initLocalFolderDialog();
@@ -126,7 +126,7 @@
                 workspace.addLocalFolder(path, name);
             }
         }, oAddLocalFolderDialog);
-    }
+    };
 
     workspace.chooseLocalFolder = function () {
         dialog.showOpenDialog({
@@ -138,7 +138,7 @@
             oLocalFolderInput.value = paths[0];
             oLocalNameInput.value = paths[0].substring(paths[0].lastIndexOf(path.sep) + 1);
         });
-    }
+    };
 
     workspace.checkLocalFolder = function () {
         if (!oLocalFolderInput.value) {
@@ -147,7 +147,7 @@
             return;
         }
         return oLocalFolderInput.value;
-    }
+    };
 
     workspace.checkLocalName = function () {
         if (!oLocalNameInput.value) {
@@ -158,7 +158,7 @@
         oLocalTip.textContent = '工作空间中显示的名称';
         oLocalTip.replaceAllClass('color-tip');
         return oLocalNameInput.value;
-    }
+    };
 
     workspace.addLocalFolder = function (path, name) {
         tree.appendNode({
@@ -168,7 +168,7 @@
         });
         utils.dismissDialog(oAddLocalFolderDialog);
         workspace.cache();
-    }
+    };
 
     /*树的一些操作*/
     tree.on('toggle', function (node) {
@@ -314,7 +314,7 @@
                     oDocNameTip.replaceAllClass('color-warning');
                     return;
                 }
-                if (!docName.match(/\.(md|markdown)/)) {
+                if (!docName.match(/\.(md|markdown)$/)) {
                     docName += '.md';
                 }
                 var docPath = path.join(currentNode.path, docName);
@@ -353,7 +353,7 @@
             var childName = listFile[i];
             var childPath = path.join(node.path, childName);
             var childStat = fs.statSync(childPath);
-            if (!childStat.isDirectory() && !path.extname(childName).match(/\.(md|markdown)/)) continue;
+            if (!childStat.isDirectory() && !path.extname(childName).match(/\.(md|markdown)$/)) continue;
             nodeArray.push({
                 'name': childName,
                 'children': childStat.isDirectory() ? [] : null,
@@ -361,7 +361,7 @@
             });
         }
         nodeArray.sort(compareNode);
-        for (var i in nodeArray) {
+        for (i in nodeArray) {
             tree.appendNode(nodeArray[i], node);
         }
     }
@@ -383,16 +383,16 @@
     }
 
     /*右键菜单*/
-    const workspaceMenu = new Menu()
+    const workspaceMenu = new Menu();
     workspaceMenu.append(new MenuItem({
         label: '添加本地目录',
         click: workspace.showAddLocalFolderDialog
-    }))
+    }));
 
     oWorkspaceTree.addEventListener('contextmenu', function (e) {
-        e.preventDefault()
+        e.preventDefault();
         workspaceMenu.popup(bw);
-    }, false)
+    }, false);
 
     this.workspace = workspace;
 })();

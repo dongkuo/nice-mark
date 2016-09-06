@@ -1,6 +1,3 @@
-/**
- * Created by derek on 16-7-5.
- */
 (function () {
 
     HTMLElement.prototype.one = function (ev, callback) {
@@ -8,7 +5,7 @@
             callback.call(this, ev);
             this['on' + ev] = null;
         };
-    }
+    };
 
     const utils = {};
     const colorArray = ['#03A9F4', '#FF5722', '#F44336'];
@@ -87,7 +84,7 @@
             ele.style.opacity = value;
             dialogContainer.style['margin-top'] = Animation.mapValueInRange(value, 0, 1, 150, 200) + 'px';
         });
-    }
+    };
 
     utils.dismissDialog = function (ele) {
         ele = ele || messageDialog;
@@ -105,17 +102,17 @@
                 ele.style.display = 'none';
             }
         });
-    }
+    };
 
     var aDialog = document.querySelectorAll('.dialog-layout');
     var aDialogDismiss = document.querySelectorAll('*[dialog-dismiss]');
-    for (var i = 0; aDialog && i < aDialog.length; i++) {
+    for (i = 0; aDialog && i < aDialog.length; i++) {
         aDialog[i].onclick = function (ev) {
             if (ev.target == this && this.getAttribute('cancelable') != null)
                 utils.dismissDialog(this);
         }
     }
-    for (var i = 0; aDialogDismiss && i < aDialogDismiss.length; i++) {
+    for (i = 0; aDialogDismiss && i < aDialogDismiss.length; i++) {
         aDialogDismiss[i].onclick = function () {
             utils.dismissDialog(document.querySelector('#' + this.getAttribute('dialog-dismiss')));
         }
@@ -154,7 +151,7 @@
             }
         });
 
-    }
+    };
 
     /*计算绝对偏移量*/
     utils.getElementAbsoluteOffset = function (ele) {
@@ -182,19 +179,19 @@
             left: left,
             top: top
         };
-    }
+    };
 
     /*动画*/
-    var Animation = new Object();
+    var Animation = {};
     utils.Animation = Animation;
 
     Animation.clear = function (id) {
         delete Animation.set[id];
-    }
+    };
 
     Animation.clearAll = function () {
         Animation.set = {};
-    }
+    };
 
     Animation.set = {};
 
@@ -250,7 +247,7 @@
                 if (!a || a < Math.abs(c)) {
                     a = c;
                     var s = p / 4;
-                } else var s = p / (2 * Math.PI) * Math.asin(c / a);
+                } else s = p / (2 * Math.PI) * Math.asin(c / a);
                 return (a * Math.pow(2, -10 * t) * Math.sin((t * d - s) * (2 * Math.PI) / p) + c + b);
             }
 
@@ -262,7 +259,7 @@
                 return Animation.mapValueInRange(t, 0, d, b, e);
             }
         }
-    }
+    };
 
     Animation.mapValueInRange = function (value, fromLow, fromHigh, toLow, toHigh) {
         if (value == fromLow) return toLow;
@@ -306,10 +303,10 @@
         var ALT_CODE = 4000;
         hotKey = hotKey.replace(/\s+/g, "").toLocaleLowerCase();
         var code = 0;
-        if (hotKey.match("\\+")) {
+        if (hotKey.match(/\\+/)) {
             // 组合按键
-            var keys = hotKey.split("+")
-            for (key in keys) {
+            var keys = hotKey.split("+");
+            for (var key in keys) {
                 if (keys[key] == "shift") {
                     code += SHIFT_CODE;
                 } else if (keys[key] == "ctrl") {
@@ -326,20 +323,6 @@
                         code += unicode;
                     }
                 }
-            }
-        } else {
-            // 单按键（F1~F12）
-            if (hotKey.match("f[0-9]{1,2}")) {
-                try {
-                    var num = Number(hotKey.substr(1));
-                    if (num >= 1 && num <= 12) {
-                        hotKey = 112 + num - 1;
-                    }
-                } catch (e) {
-                    hotKey = -1;
-                }
-            } else {
-                hotKey = -1;
             }
         }
         hotKeyMap[code] = callback;
@@ -361,7 +344,7 @@
                 hotKeyMap[code]();
             }
         };
-    }
+    };
 
     utils.zoom = function (imageEle) {
         if (imageEle.zooming) return;
@@ -467,7 +450,7 @@
                 }
             });
         }
-    }
+    };
 
     /*radio group*/
     var aRadio = document.querySelectorAll('.radio-group');
@@ -490,7 +473,7 @@
 
     /*checkbox*/
     var aCheckbox = document.querySelectorAll('.checkbox');
-    for (var i = 0; i < aCheckbox.length; i++) {
+    for (i = 0; i < aCheckbox.length; i++) {
         aCheckbox[i].onclick = function () {
             var isChecked = this.hasAttribute('checked');
             if (isChecked)
@@ -526,7 +509,7 @@
                 oCover.style.display = "none";
             }
         });
-    }
+    };
 
     this.utils = utils;
 })();
