@@ -45,6 +45,17 @@
 </head>
 
 <body>
+<!--about dialog-->
+<div id="about-dialog" class="dialog-layout" cancelable>
+    <div class="dialog-container">
+        <h3>关于</h3>
+        <p class="text-center"><img src="img/icon.png"></p>
+        <h4 class="text-center">NiceMark，享受书写的乐趣</h4>
+        <p class="text-center"><a class="github" href="javascript:void(0)"
+                                  onclick="win.openUrl('https://github.com/dongkuo/NiceMark')">https://github.com/dongkuo/NiceMark</a>
+        </p>
+    </div>
+</div>
 <!--关联本地目录dialog-->
 <div id="add-local-folder-dialog" class="dialog-layout" cancelable>
     <div class="dialog-container">
@@ -106,8 +117,8 @@
 <iframe id="print-iframe" class="hidden" src="template/pdf-template.html"></iframe>
 <!--标题栏-->
 <div id="titlebar">
-    <img id="titlebar-logo" src="img/logo.png"/>
-    <p id="titlebar-title">NiceMark，享受书写的快乐</p>
+    <img id="titlebar-logo" src="img/logo.png" onclick="win.about()"/>
+    <p id="titlebar-title">NiceMark，享受书写的乐趣</p>
     <ul id="titlebar-control">
         <li class="material-icons" onclick="win.toogleFullScreen()">fullscreen</li>
         <li class="material-icons" onclick="win.minimize()">remove</li>
@@ -124,36 +135,36 @@
             <i id="workspace-search-btn" class="material-icons">search</i>
             <ul id="workspace-search-box">
                 <li selected>
-                    <p class="workspace-search-box-doc-name">安妮的六月诗句</p>
-                    <p class="workspace-search-box-doc-location">C:\Users\dongkuo\Desktop\安妮的六月诗句.md</p>
+                    <p class="workspace-search-box-doc-name">文档搜索，暂未未实现</p>
+                    <p class="workspace-search-box-doc-location">/home/xxx/文档搜索，暂未未实现.md</p>
                 </li>
                 <li>
-                    <p class="workspace-search-box-doc-name">安妮的六月诗句</p>
-                    <p class="workspace-search-box-doc-location">C:\Users\dongkuo\Desktop\安妮的六月诗句.md</p>
+                    <p class="workspace-search-box-doc-name">文档搜索，暂未未实现</p>
+                    <p class="workspace-search-box-doc-location">/home/xxx/文档搜索，暂未未实现.md</p>
                 </li>
                 <li>
-                    <p class="workspace-search-box-doc-name">安妮的六月诗句</p>
-                    <p class="workspace-search-box-doc-location">C:\Users\dongkuo\Desktop\安妮的六月诗句.md</p>
+                    <p class="workspace-search-box-doc-name">文档搜索，暂未未实现</p>
+                    <p class="workspace-search-box-doc-location">/home/xxx/文档搜索，暂未未实现.md</p>
                 </li>
                 <li>
-                    <p class="workspace-search-box-doc-name">安妮的六月诗句</p>
-                    <p class="workspace-search-box-doc-location">C:\Users\dongkuo\Desktop\安妮的六月诗句.md</p>
+                    <p class="workspace-search-box-doc-name">文档搜索，暂未未实现</p>
+                    <p class="workspace-search-box-doc-location">/home/xxx/文档搜索，暂未未实现.md</p>
                 </li>
                 <li>
-                    <p class="workspace-search-box-doc-name">安妮的六月诗句</p>
-                    <p class="workspace-search-box-doc-location">C:\Users\dongkuo\Desktop\test\xxx\ssssss\安妮的六月诗句.md</p>
+                    <p class="workspace-search-box-doc-name">文档搜索，暂未未实现</p>
+                    <p class="workspace-search-box-doc-location">/home/xxx/文档搜索，暂未未实现.md</p>
                 </li>
                 <li>
-                    <p class="workspace-search-box-doc-name">安妮的六月诗句</p>
-                    <p class="workspace-search-box-doc-location">C:\Users\dongkuo\Desktop\安妮的六月诗句.md</p>
+                    <p class="workspace-search-box-doc-name">文档搜索，暂未未实现</p>
+                    <p class="workspace-search-box-doc-location">/home/xxx/文档搜索，暂未未实现.md</p>
                 </li>
                 <li>
-                    <p class="workspace-search-box-doc-name">安妮的六月诗句</p>
-                    <p class="workspace-search-box-doc-location">C:\Users\dongkuo\Desktop\安妮的六月诗句.md</p>
+                    <p class="workspace-search-box-doc-name">文档搜索，暂未未实现</p>
+                    <p class="workspace-search-box-doc-location">/home/xxx/文档搜索，暂未未实现.md</p>
                 </li>
                 <li>
-                    <p class="workspace-search-box-doc-name">安妮的六月诗句</p>
-                    <p class="workspace-search-box-doc-location">C:\Users\dongkuo\Desktop\安妮的六月诗句.md</p>
+                    <p class="workspace-search-box-doc-name">文档搜索，暂未未实现</p>
+                    <p class="workspace-search-box-doc-location">/home/xxx/文档搜索，暂未未实现.md</p>
                 </li>
             </ul>
         </div>
@@ -229,7 +240,7 @@
     </div>
 </div>
 <script type="text/javascript" src="js/utils.js"></script>
-<script type="text/javascript" src="js/lib/tree.js"></script>
+<script type="text/javascript" src="js/tree.js"></script>
 <script type="text/javascript" src="js/win.js"></script>
 <script type="text/javascript" src="js/workspace.js"></script>
 <script type="text/javascript" src="js/editor.js"></script>

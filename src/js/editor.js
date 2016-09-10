@@ -130,6 +130,10 @@
         codeMirror.focus();
     };
 
+    editor.code_inline = function () {
+        appendSymmetricInlineChar("`");
+    };
+
     editor.hr = function () {
         appendBlockChar('---\n\n', 2);
     };
@@ -144,6 +148,10 @@
         codeMirror.focus();
     };
 
+    editor.math_inline = function () {
+        appendSymmetricInlineChar("$");
+    };
+
     editor.link = function () {
         appendInlineChar('[]()', 1);
     };
@@ -154,7 +162,7 @@
 
     editor.table = function () {
         var pos = newlineIfNeed();
-        appendBlockChar('|  列1    |  列2    |  列3    |\n|--------- |--------- |---------|\n|   行1   |  行1    |  行1    |', 2);
+        appendBlockChar('|    列1    |    列2    |    列3    |\n|--------- |--------- |--------- |\n|    行1    |    行1    |    行1    |', 2);
     };
 
     editor.save = function (callback) {
@@ -175,17 +183,21 @@
     };
 
     // 添加快捷键
-    utils.addHotKey("ctrl + b", editor.bold);
-    utils.addHotKey("ctrl + i", editor.italic);
+    // 行间
     utils.addHotKey("ctrl + h", editor.hr);
-    utils.addHotKey("ctrl + q", editor.quotation);
-    utils.addHotKey("ctrl + shift + c", editor.code);
-    utils.addHotKey("ctrl + m", editor.math);
-    utils.addHotKey("ctrl + l", editor.link);
-    utils.addHotKey("ctrl + g", editor.img);
-    utils.addHotKey("ctrl + t", editor.table);
     utils.addHotKey("ctrl + u", editor.ul);
     utils.addHotKey("ctrl + o", editor.ol);
+    utils.addHotKey("ctrl + t", editor.table);
+    utils.addHotKey("ctrl + q", editor.quotation);
+    utils.addHotKey("ctrl + m", editor.math);
+    utils.addHotKey("ctrl + g", editor.img);
+    utils.addHotKey("alt  + c", editor.code);
+    // 行内
+    utils.addHotKey("ctrl + shift + b", editor.bold);
+    utils.addHotKey("ctrl + shift + i", editor.italic);
+    utils.addHotKey("ctrl + shift + l", editor.link);
+    utils.addHotKey("ctrl + shift + m", editor.math_inline);
+    utils.addHotKey("ctrl + shift + c", editor.code_inline);
 
     // 添加对称的行内符号
     function appendSymmetricInlineChar(symbol) {

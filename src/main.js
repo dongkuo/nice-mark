@@ -35,7 +35,6 @@ function openWindow() {
         }
     });
 
-    // and load the index.html of the app.
     win.loadURL(`file://${__dirname}/index.html`);
 
     // win.webContents.openDevTools();

@@ -105,7 +105,6 @@
 
     // 代码高亮
     function highlight(code, language) {
-        console.log(code);
         if (language == 'auto') {
             return hljs.highlightAuto(code).value;
         }

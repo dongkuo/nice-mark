@@ -176,14 +176,21 @@
         listNode(node);
     });
 
-    tree.on('dbclick', function (node) {
-        currentNode = node;
-        if (node.children) {
-            tree.toggle(node);
+    tree.on('dbclick', openDoc);
+
+    function openDoc(forced) {
+        if (tree.currentNode.children) {
+            tree.toggle(tree.currentNode);
+            return;
+        }
+        if (forced) {
+            editor.readFile(tree.currentNode.path);
+            utils.dismissDialog();
+            workspace.toggle();
             return;
         }
         if (editor.isClean()) {
-            editor.readFile(node.path);
+            editor.readFile(tree.currentNode.path);
             workspace.toggle();
             return;
         }
@@ -194,28 +201,22 @@
             positive: {
                 text: '保存',
                 callback: function () {
-                    editor.save(openFile);
+                    editor.save(function () {
+                        openDoc(true);
+                    });
                 }
             },
             negative: {
                 text: '不保存',
-                callback: openFile
+                callback: function () {
+                    openDoc(true);
+                }
             }
         });
-    });
-
-    /**
-     * 打开文件
-     */
-    function openFile() {
-        editor.readFile(currentNode.path);
-        utils.dismissDialog();
-        workspace.toggle();
     }
 
     tree.on('append', function (node, ele) {
-        var nodeContainer = ele.querySelector('.tree-node-container');
-        bindNodeMenu(nodeContainer, node);
+        bindNodeMenu(ele.querySelector('.tree-node-container'), node);
     });
 
     /*结点菜单*/
@@ -229,50 +230,64 @@
         label: '排序',
         submenu: [{
             label: '名称',
-            type: 'checkbox'
+            type: 'checkbox',
+            click: todo
         }, {
             label: '修改日期',
-            type: 'checkbox'
+            type: 'checkbox',
+            click: todo
         }, {
             label: '类型',
-            type: 'checkbox'
+            type: 'checkbox',
+            click: todo
         }, {
             label: '大小',
-            type: 'checkbox'
+            type: 'checkbox',
+            click: todo
         }, {
-            type: 'separator'
+            type: 'separator',
+            click: todo
         }, {
             label: '递增',
-            type: 'checkbox'
+            type: 'checkbox',
+            click: todo
         }, {
             label: '递减',
-            type: 'checkbox'
+            type: 'checkbox',
+            click: todo
         }]
     }, {
         label: '打开所在目录'
     }];
 
     const fileMenuTemplate = [{
-        label: '打开'
+        label: '打开',
+        click: openDoc
     }, {
-        label: '打开所在目录'
+        label: '打开所在目录',
+        click: todo
     }, {
-        type: 'separator'
+        type: 'separator',
+        click: todo
     }, {
-        label: '复制'
+        label: '复制',
+        click: todo
     }, {
-        label: '剪切'
+        label: '剪切',
+        click: todo
     }, {
-        label: '粘贴'
+        label: '粘贴',
+        click: todo
     }, {
-        label: '删除'
+        label: '删除',
+        click: todo
     }, {
-        label: '重命名'
+        label: '重命名',
+        click: todo
     }];
 
     const folderMenu = Menu.buildFromTemplate(folderMenuTemplate);
     const fileMenu = Menu.buildFromTemplate(fileMenuTemplate);
-    var currentNode = null;
 
     /**
      * 绑定结点菜单
@@ -280,20 +295,25 @@
      * @param node
      */
     function bindNodeMenu(nodeContainer, node) {
-        nodeContainer.addEventListener('contextmenu', function (e) {
+        // nodeContainer.addEventListener('contextmenu', function (e) {
+        //     e.preventDefault();
+        //     e.stopPropagation();
+        //     var menu = node.children ? folderMenu : fileMenu;
+        //     menu.popup(bw);
+        // }, false)
+        tree.on("rtclick", function (node, e) {
             e.preventDefault();
             e.stopPropagation();
             var menu = node.children ? folderMenu : fileMenu;
-            currentNode = node;
             menu.popup(bw);
-        }, false)
+        });
     }
 
     /**
      * 刷新当前文件夹
      */
     function refreshFolder() {
-        listNode(currentNode, true);
+        listNode(tree.currentNode, true);
     }
 
     /**
@@ -317,7 +337,7 @@
                 if (!docName.match(/\.(md|markdown)$/)) {
                     docName += '.md';
                 }
-                var docPath = path.join(currentNode.path, docName);
+                var docPath = path.join(tree.currentNode.path, docName);
                 fs.writeFile(docPath, '', {
                     'encoding': 'utf8',
                     'flag': 'wx'
@@ -382,6 +402,10 @@
         return node1.name.localeCompare(node2.name);
     }
 
+    function todo() {
+        utils.showToast("该功能暂没实现...", 1);
+    }
+
     /*右键菜单*/
     const workspaceMenu = new Menu();
     workspaceMenu.append(new MenuItem({
@@ -389,10 +413,11 @@
         click: workspace.showAddLocalFolderDialog
     }));
 
-    oWorkspaceTree.addEventListener('contextmenu', function (e) {
-        e.preventDefault();
-        workspaceMenu.popup(bw);
-    }, false);
+    oWorkspaceTree.onmousedown = function (ev) {
+        if (ev.button == 2) {
+            workspaceMenu.popup(bw);
+        }
+    };
 
     this.workspace = workspace;
 })();

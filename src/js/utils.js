@@ -296,14 +296,14 @@
 
     /*添加快捷键*/
     var hotKeyMap = {};
+    var SHIFT_CODE = 1000;
+    var CTRL_CODE = 2000;
+    var ALT_CODE = 4000;
 
     utils.addHotKey = function (hotKey, callback) {
-        var SHIFT_CODE = 1000;
-        var CTRL_CODE = 2000;
-        var ALT_CODE = 4000;
         hotKey = hotKey.replace(/\s+/g, "").toLocaleLowerCase();
         var code = 0;
-        if (hotKey.match(/\\+/)) {
+        if (hotKey.match(/\+/)) {
             // 组合按键
             var keys = hotKey.split("+");
             for (var key in keys) {
