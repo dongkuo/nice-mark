@@ -28,8 +28,39 @@
 
 ![目录结构](src/screenshot/directory_structure.png)
 
+## 3. 快捷键
 
-## 3. 下一步计划
+一般规则：
+- 行内元素：Ctrl + Shift + key；
+- 行间元素：Ctrl(Alt) + key;
+
+具体的：
+
+**行间:**
+
+|    元素                    |    快捷键    | 
+|--------------------- |------------- |
+|    hr（分割线）    |    Ctrl + h    | 
+|    ul（无序列表）|    Ctrl + u    | 
+|    ol（有序列表）|    Ctrl + o    | 
+|    table（表格）   |    Ctrl + t    | 
+| quotation（引用）|    Ctrl + q | 
+| math（Latex）      |    Ctrl + m  | 
+| image（图片）   |    Ctrl + g    | 
+| code（代码）     |    Alt +  c     | 
+
+**行内:**
+
+|    元素                    |    快捷键    | 
+|--------------------- |------------- |
+|    bold（加粗）    |    Ctrl + Shift + b    | 
+|    italic（斜体）   |    Ctrl + Shift + i    | 
+|    link（链接）     |    Ctrl + Shift + l    | 
+|math_inline（Latex） |    Ctrl + Shift + m    | 
+| code_inline（代码）|    Ctrl + Shift + c  | 
+
+
+## 4. 下一步计划
 
 1. html、pdf导出；
 2. 文档云存储。

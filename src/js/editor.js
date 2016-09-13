@@ -190,7 +190,7 @@
     utils.addHotKey("ctrl + t", editor.table);
     utils.addHotKey("ctrl + q", editor.quotation);
     utils.addHotKey("ctrl + m", editor.math);
-    utils.addHotKey("ctrl + g", editor.img);
+    utils.addHotKey("ctrl + g", editor.image);
     utils.addHotKey("alt  + c", editor.code);
     // 行内
     utils.addHotKey("ctrl + shift + b", editor.bold);
