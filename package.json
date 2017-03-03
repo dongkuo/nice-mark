@@ -1,0 +1,69 @@
+{
+  "name": "NiceMark",
+  "version": "1.0.0",
+  "description": "![NiceMark](src/img/icon.png)",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ./electron.prod.js",
+    "start:dev": "electron ./electron.dev.js",
+    "dev": "webpack-dev-server --progress --color --config ./webpack.dev.js",
+    "build": "npm-run-all clean --parallel pack",
+    "pack": "webpack --progress --color --config ./webpack.prod.js",
+    "clean": "rimraf dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/derker94/NiceMark.git"
+  },
+  "keywords": [
+    "markdown",
+    "electron",
+    "angular2"
+  ],
+  "author": "derker",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/derker94/NiceMark/issues"
+  },
+  "homepage": "https://github.com/derker94/NiceMark#readme",
+  "dependencies": {
+    "@angular/common": "^2.4.9",
+    "@angular/compiler": "^2.4.9",
+    "@angular/core": "^2.4.9",
+    "@angular/forms": "^2.4.9",
+    "@angular/http": "^2.4.9",
+    "@angular/material": "^2.0.0-beta.2",
+    "@angular/platform-browser": "^2.4.9",
+    "@angular/platform-browser-dynamic": "^2.4.9",
+    "@angular/router": "^3.4.9",
+    "@angularclass/hmr": "^1.2.2",
+    "@angularclass/hmr-loader": "^3.0.2",
+    "core-js": "^2.4.1",
+    "hammerjs": "^2.0.8",
+    "rxjs": "^5.2.0",
+    "zone.js": "^0.7.7"
+  },
+  "devDependencies": {
+    "@angular/cli": "^1.0.0-rc.1",
+    "@types/node": "^7.0.5",
+    "angular2-template-loader": "^0.6.2",
+    "awesome-typescript-loader": "^3.0.8",
+    "css-loader": "^0.26.2",
+    "electron": "^1.6.1",
+    "extract-text-webpack-plugin": "^2.0.0",
+    "glob": "^7.1.1",
+    "html-loader": "^0.4.5",
+    "html-webpack-plugin": "^2.28.0",
+    "node-sass": "^4.5.0",
+    "npm-run-all": "^4.0.2",
+    "raw-loader": "^0.5.1",
+    "rimraf": "^2.6.1",
+    "sass-loader": "^6.0.2",
+    "style-loader": "^0.13.2",
+    "typescript": "^2.2.1",
+    "webpack": "^2.2.1",
+    "webpack-dev-middleware": "^1.10.1",
+    "webpack-dev-server": "^2.4.1",
+    "webpack-merge": "^3.0.0"
+  }
+}

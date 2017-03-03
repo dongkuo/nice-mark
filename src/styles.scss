@@ -1,0 +1,30 @@
+@import '~@angular/material/core/theming/all-theme';
+
+// NOTE: Theming is currently experimental and not yet publically released!
+
+@include mat-core();
+
+//Here the existing theme is being redfined
+$primary: mat-palette($mat-deep-purple);
+$accent:  mat-palette($mat-amber, A200, A100, A400);
+$theme: mat-light-theme($primary, $accent);
+
+@include angular-material-theme($theme);
+
+// This is where you define your custom them
+
+// mat-palette takes, color, default, lighter and darker params
+.m2app-dark {
+  $dark-primary: mat-palette($mat-cyan, 700, 500, 900);
+  $dark-accent:  mat-palette($mat-yellow, A200, A100, A400);
+  $dark-warn:    mat-palette($mat-amber, A200, A100, A400);
+
+  $dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
+
+  @include angular-material-theme($dark-theme);
+}
+
+body {
+  background: #0147A7;
+  color: #fff;
+}
