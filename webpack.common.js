@@ -23,7 +23,7 @@ module.exports = {
         use: [{
           loader: 'awesome-typescript-loader',
           options: {configFileName: path.resolve(__dirname, 'tsconfig.json')}
-        }, 'angular2-template-loader']
+        }, 'angular2-template-loader'].concat(process.env.NODE_DEV == 'prod' ? [] : '@angularclass/hmr-loader')
       },
       {
         test: /\.html$/,
@@ -45,7 +45,7 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        use: ["style-loader",  "css-loader", "sass-loader"]
+        use: ["style-loader", "css-loader", "sass-loader"]
       }
     ]
   },
