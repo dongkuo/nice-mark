@@ -1,0 +1,9 @@
+<div class="tabs-container">
+  <ul #ul class="tabs-list" [scrollLeft]="scrollOffset" (scroll)="setScrollOffset(ul.scrollLeft)">
+    <li #li *ngFor="let tab of tabs;let i=index" class="{{tab.theme}}" [ngClass]="{selected: tab.selected}"
+        (click)="selectTab(i, [li.offsetLeft, li.offsetLeft + li.offsetWidth], ul.scrollLeft, ul.offsetWidth)">
+      <span>{{tab.name}} {{tab.theme == 'warning'?'*':''}}</span>
+      <i class="material-icons close-btn" (click)="deleteTab(i)">close</i>
+    </li><li (click)="addTab('新建文档')"><span>&nbsp;</span><i class="material-icons add-btn">add</i></li>
+  </ul>
+</div>

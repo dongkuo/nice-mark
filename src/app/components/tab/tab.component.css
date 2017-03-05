@@ -1,0 +1,92 @@
+.tabs-list {
+  list-style: none;
+  background-color: #FBFBFB;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  width: 100%;
+}
+
+.tabs-list::-webkit-scrollbar-thumb {
+  background-color: white;
+}
+
+.tabs-list::-webkit-scrollbar-thumb:hover {
+  background-color: #555555;
+}
+
+.tabs-list::-webkit-scrollbar {
+  height: 4px;
+  background-color: white;
+}
+
+.tabs-list::-webkit-scrollbar:hover{
+  background-color: #F0F0F0;
+}
+
+.tabs-list li {
+  box-sizing: border-box;
+  display: table-cell;
+  position: relative;
+  padding-left: 16px;
+  padding-right: 56px;
+  cursor: pointer;
+  line-height: 36px;
+  user-select: none;
+  background-color: #F5F5F5;
+  border-left: 3px solid #9E9E9E;
+  max-width: 320px;
+  min-width: 180px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tabs-list li:last-child{
+  padding: 0;
+  width: 40px;
+  max-width: 40px;
+  min-width: 40px;
+}
+
+.tabs-list li.selected{
+  border-color: #00C853;
+  color: #1B5E20;
+  background-color: #E8F5E9;
+}
+
+.tabs-list li.warning{
+  border-color: #FFD600;
+  color: #F57F17;
+}
+
+.tabs-list li.warning.selected{
+  background-color: #FFFDE7;
+}
+
+.tabs-list li .close-btn {
+  font-size: 16px;
+  position: absolute;
+  top: 10px;
+  right: 8px;
+  cursor: pointer;
+  color: #AAAAAA;
+}
+
+.tabs-list li .add-btn{
+  font-size: 20px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+  padding: 8px;
+  color: #666666;
+}
+
+.tabs-list li .close-btn:hover{
+  color: #d32f2f;
+}
+
+.tabs-list li .add-btn:hover{
+  color: #00C853;
+  background-color: #E8F5E9;
+}

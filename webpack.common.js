@@ -35,17 +35,17 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        exclude: path.resolve(__dirname, 'src/app'),
+        exclude: path.resolve(__dirname, 'src/app/components'),
         use: ExtractTextPlugin.extract({fallback: 'style-loader', use: 'css-loader?sourceMap'})
       },
       {
         test: /\.css$/,
-        include: path.resolve(__dirname, 'src/app'),
+        include: path.resolve(__dirname, 'src/app/components'),
         use: 'raw-loader'
       },
       {
         test: /\.scss$/,
-        use: ["style-loader", "css-loader", "sass-loader"]
+        use: ['style-loader', 'css-loader', 'sass-loader?sourceMap']
       }
     ]
   },
