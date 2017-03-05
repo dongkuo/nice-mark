@@ -6,7 +6,7 @@
 
 ## 下载
 
-## 开发
+## 对于开发人员
 
 **1. 下载**
 
@@ -23,16 +23,20 @@ npm install
 
 **3. 使用**
 
-生产：
+生产环境运行：
 
 ```
 npm run build
 npm start
 ```
 
-开发：
+开发环境运行：
 
 ```
 npm run dev
 npm run start:dev
 ```
+
+## License
+
+The MIT License.
