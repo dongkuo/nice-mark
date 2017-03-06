@@ -6,9 +6,7 @@ import {MaterialModule} from '@angular/material';
 import 'hammerjs';
 import { removeNgStyles, createNewHosts, createInputTransfer } from '@angularclass/hmr';
 
-import '../styles.scss';
-
-import {AppComponent} from './app.component';
+import {AppComponent} from './components/main/main.component';
 
 @NgModule({
   declarations: [
