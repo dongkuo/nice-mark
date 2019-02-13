@@ -1,3 +1,5 @@
+# 已废弃
+
 ![NiceMark](src/img/icon.png)
 
 # NiceMark
