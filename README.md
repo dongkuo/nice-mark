@@ -1,4 +1,4 @@
-# 已废弃！！！
+# 已停止维护！！！
 
 ![NiceMark](src/img/icon.png)
 
